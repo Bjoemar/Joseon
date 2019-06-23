@@ -15,6 +15,7 @@
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "express-useragent": "^1.0.12",
     "express-validator": "^6.0.1",
     "formidable": "^1.2.1",
     "graceful-fs": "^4.1.15",

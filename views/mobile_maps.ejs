@@ -20,12 +20,13 @@
       <div class="web-listing-area mb-4">
 
         <div class="search_holder">
-          
-          <div class="search_box">
-              <img src="assets/images/searchicon.png">
-              <input type="text" name="placeSearch" placeholder="원하시는 지역명, 지하철역, ">
-              <button id="search_place">찾아보기</button>
-            </div> 
+          <form action="maps" method="POST">
+            <div class="search_box">
+                <img src="assets/images/searchicon.png">
+                <input type="text" name="placeSearch" placeholder="원하시는 지역명, 지하철역, ">
+                <button id="search_place">찾아보기</button>
+              </div> 
+         </form>   
         </div>
 
         <div class="content_buttons mb-3" style="text-align: center; padding: 10px;" >

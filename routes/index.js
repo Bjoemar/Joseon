@@ -9,8 +9,11 @@ var MongoClient = require('mongodb').MongoClient;
 var formidable = require('formidable');
 var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
 var bodyParser = require('body-parser');
+var useragent = require('express-useragent');
 var urlencodedParser = bodyParser.urlencoded({extended : false});
 var dt = dateTime.create();
+
+router.use(useragent.express());
 
 
 
@@ -22,10 +25,20 @@ router.get('/', (req, res) => {
             dbo.collection("web_content").find().toArray(function(err,result){
 
                 if(req.session != null) {
-                    res.render('./mobile_index' , {userLevel : req.session.userLevel , result : result });
-                    // res.render('./index', {userLevel : req.session.userLevel , result : result });
+                  if(req.useragent.isMobile) {
+                      res.render('./mobile_index' , {userLevel : req.session.userLevel , result : result });
+                  } else {
+                     res.render('./index', {userLevel : req.session.userLevel , result : result });
+                  }
+                  
+                    
                 } else {
-                    res.render('./index' , {result : result});
+                   if(req.useragent.isMobile) {
+                       res.render('./inmobile_indexdex' , {result : result});
+                   } else {
+                      res.render('./index' , {result : result});
+                   }
+                   
                 }
 
             });
@@ -37,8 +50,14 @@ router.get('/', (req, res) => {
 
 
 router.get('/maps', (req, res) => {
-	// res.render('./maps', {userLevel : req.session.userLevel});
-    res.render('./mobile_maps', {userLevel : req.session.userLevel});
+
+   if(req.useragent.isMobile) {
+       res.render('./mobile_maps', {userLevel : req.session.userLevel});
+   } else {
+      res.render('./maps', {userLevel : req.session.userLevel});
+   }
+	
+   
 });
 
 
@@ -48,10 +67,21 @@ router.get('/event', (req, res) => {
  		var dbo = db.db('zigbang');
  		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
              if(result.length > 0) {
- 			      res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '이벤트' , type : result[0].type});
-          // res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '이벤트' , type : result[0].type});
+
+                if(req.useragent.isMobile) {
+                    res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '이벤트' , type : result[0].type});
+                } else {
+                    res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '이벤트' , type : result[0].type});
+                }
+ 			     
              } else {
-                res.redirect('/');
+
+                if(req.useragent.isMobile) {
+                    res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                } else {
+                    res.redirect('/' , {userLevel : req.session.userLevel});
+                }
+               
              }
  			db.close();
  		});
@@ -68,10 +98,20 @@ router.get('/notice', (req, res) => {
   		var dbo = db.db('zigbang');
   		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
              if(result.length > 0) {
-  			   res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '공지사항' , type : result[0].type});
-           // res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '공지사항' , type : result[0].type})
+
+              if(req.useragent.isMobile) {
+                  res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '공지사항' , type : result[0].type});
+              } else {
+                  res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '공지사항' , type : result[0].type})
+              }
+  			   
              } else {
-                res.redirect('/');
+                
+                if(req.useragent.isMobile) {
+                    res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                } else {
+                    res.redirect('/' , {userLevel : req.session.userLevel});
+                }
              }
   			db.close();
   		});
@@ -86,10 +126,21 @@ router.get('/game', (req, res) => {
   		var dbo = db.db('zigbang');
   		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
              if(result.length > 0) {
-  			   res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '게임방법' , type : result[0].type});
-           // res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '게임방법' , type : result[0].type})
+
+                  if(req.useragent.isMobile) {
+                       res.render('./mobile_layout', {userLevel : req.session.userLevel , result : result , name : '게임방법' , type : result[0].type});
+                  } else {
+                      res.render('./layout', {userLevel : req.session.userLevel , result : result , name : '게임방법' , type : result[0].type})
+                  }
+  			  
+
              } else {
-                res.redirect('/');
+               
+                   if(req.useragent.isMobile) {
+                       res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                   } else {
+                       res.redirect('/' , {userLevel : req.session.userLevel});
+                   }
              }
   			db.close();
   		});
@@ -102,9 +153,20 @@ router.get('/game', (req, res) => {
 
 router.get('/admin', (req, res) => {
   	if(req.session.userLevel == 'normal') {
-		res.redirect('/');
+
+
+      if(req.useragent.isMobile) {
+          res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+      } else {
+          res.redirect('/' , {userLevel : req.session.userLevel});
+      }
 	} else {
-		res.render('./adminpage', {userLevel : req.session.userLevel});
+
+
+    if(!req.useragent.isMobile) {
+        res.render('./adminpage', {userLevel : req.session.userLevel});
+    } 
+		
 	}
 });
 
@@ -159,10 +221,23 @@ router.get('/view',function(req,res){
     }
     dbo.collection('web_content').find(query).toArray(function(err,result){
         if(result.length > 0) {
-            // res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
-            res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
+
+
+          if(req.useragent.isMobile) {
+              res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
+          } else {
+              res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
+          }
+
+           
         } else {
-            res.redirect('/',{userLevel : req.session.userLevel});
+
+            if(req.useragent.isMobile) {
+                res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+            } else {
+                res.redirect('/' , {userLevel : req.session.userLevel});
+            }
+        
         }
 
     })
@@ -180,7 +255,15 @@ router.post('/maps', urlencodedParser ,function(req,res) {
 
     var place_search = req.body.placeSearch;
 
-    res.render('./maps', {'place_search' : place_search , userLevel : req.session.userLevel});
+
+
+    if(req.useragent.isMobile) {
+         res.render('./mobile_maps', {'place_search' : place_search , userLevel : req.session.userLevel});
+    } else {
+         res.render('./maps', {'place_search' : place_search , userLevel : req.session.userLevel});
+    }
+
+    
     // response.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -280,11 +363,6 @@ router.get('/m_login',function(req,res){
 router.get('/m_register',function(req,res){
      res.render('./mobile_register'); 
 })
-
-
-
-
-
 
 
 
