@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN</title>
+	 <% include mobile_partials/header %>
+</head>
+<body>
+  	<% include mobile_partials/navigation %>
+
+
+      <div class="container">
+          
+
+          <div class="login-holder">
+            
+            <div class="title-login">
+              
+              <h1>회원가입</h1>
+
+            </div>
+            <form action="/user/register" method="POST" id="reg_inner_form">
+                
+              
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="text" name="reg_user_id" placeholder="아이디">
+              </div>
+
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="password" name="reg_password" placeholder="비밀번호">
+              </div>
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="password" name="reg_password2" placeholder="비밀번호 확인">
+              </div>
+
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="text" name="reg_name" placeholder="이름">
+              </div>
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="text" name="reg_cellphone" placeholder="휴대전화">
+              </div>
+
+              <div class="reg-form reg_inputs">
+                <small></small>
+                <input type="text" name="reg_email" placeholder="이메일">
+              </div>
+
+              <div class="button-holder">
+                <button style="width: 90%;" type="button" class="login-btn btn-dark" id="register_credentials">확인</button>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+
+  	<% include mobile_partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

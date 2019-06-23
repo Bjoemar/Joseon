@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><% if (typeof result != 'undefined') { -%><%= result[0]['title'] %><% } -%></title>
+	 <% include mobile_partials/header %>
+</head>
+<body>
+  	<% include mobile_partials/navigation %>
+
+
+    <div class="content-fluid">
+      
+      <div class="event-content">
+
+        <div class="event-header">
+          
+          <h4><%= result[0]['title'] %></h4>
+        </div>
+
+
+        <% if (typeof result != 'undefined') { -%>
+              
+            <% var resLen = result.length;
+              if (resLen > 0) { %>
+                  
+                <%- result[0]['content']%>
+            <% } %>
+          <% } -%>
+        
+        <div class="clear"></div>
+
+    </div>
+  
+  	<% include mobile_partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

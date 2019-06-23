@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HOME</title>
+	 <% include mobile_partials/header %>
+</head>
+<body>
+  	<% include mobile_partials/navigation %>
+
+
+      <div class="content">
+
+        <div class="banner-gradient">
+            <div class="search_box">
+              <img src="assets/images/searchicon.png">
+              <input type="text" name="placeSearch" placeholder="원하시는 지역명, 지하철역, ">
+              <button id="search_place">찾아보기</button>
+            </div> 
+        </div><!-- banner-gradiet -->
+
+
+      </div><!-- content -->
+
+      <div class="container">
+          
+          <div class="another-content-holder row">
+            <div class="comp-image col-sm-12">
+              <img src="assets/images/banner_agent_register.jpg">
+            </div>
+            <div class="comp-text col-sm-12">
+              
+              <div class="title">
+
+                <h5>이벤트</h5>
+                <button type="button" class="btn btn-outline-secondary btn-sm">더보기</button>
+                <div class="clear"></div>
+              </div>
+             
+             <% var resLen = result.length;
+                if (resLen > 0) {
+                  for (i = 0; i < resLen; i++) { %>
+                    <% if (result[i]['type'] == 'event' ) { -%>
+                    <div class="description">
+                       <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                       <small></small>
+                     </div>
+                    <% } -%>
+               <%
+                  }
+                }
+               %>
+             
+
+            </div>
+            <div class="comp-text col-sm-12">
+
+              <div class="title">
+
+                <h5>이벤트</h5>
+                <button type="button" class="btn btn-outline-secondary btn-sm">더보기</button>
+                <div class="clear"></div>
+              </div>
+             
+                
+                <% var resLen = result.length;
+                   if (resLen > 0) {
+                     for (i = 0; i < resLen; i++) { %>
+                       <% if (result[i]['type'] == 'notice' ) { -%>
+                       <div class="description">
+                          <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                          <small style="float: right;"></small>
+                        </div>
+                       <% } -%>
+                  <%
+                     }
+                   }
+                  %>
+                
+              
+              
+
+            </div>
+
+          </div>    
+
+      </div><!-- container -->
+  
+  	<% include mobile_partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

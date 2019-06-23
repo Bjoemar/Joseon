@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-md">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="float:left;">
+     <i class="fas fa-bars"></i>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <a class="navbar-brand" href="/" style="position:absolute; left : 55px; top : 5px;">
+    <div class="logo">
+      <img src="assets/images/web-logo.png" style="height : 40px;">
+    </div>
+  </a>
+
+  <div class="clear"></div>
+
+
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="maps">홀덤바 위치</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="event?type=event">이벤트</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="notice?type=notice">공지사항</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="game?type=game">게임방법</a>
+
+    </ul>
+  </div>  
+        <div class="login" style="position:absolute; right : 0; top : 20px;">
+
+            <% if (typeof userLevel == 'undefined'){ %>
+              <a class="nav-link" href="/m_register">회원가입</a> 
+               <a class="nav-link" href="/m_login">로그인</a>
+            <% } else { %>
+              <a class="nav-link" href="/m_login">Logout</a>
+
+              
+            <% } %>
+
+            
+            <div class="clear"></div>
+        </div>
+</nav>

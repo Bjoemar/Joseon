@@ -1,0 +1,72 @@
+<nav>
+	<ul>
+		<li>
+			<div class="navLogo">
+				<a href="/"><img src="assets/images/web-logo.png"></a>
+			</div>
+		</li>
+		<li><a href="maps" class="web-nav-link">홀덤바 위치</a></li>
+		<li><a href="event?type=event" class="web-nav-link">이벤트</a></li>
+		<li><a href="notice?type=notice" class="web-nav-link">공지사항</a></li>
+		<li><a href="game?type=game" class="web-nav-link">게임방법</a></li>
+
+		<div class="right_nav_cont">
+
+
+				<% if (typeof userLevel == 'undefined'){ %>
+					<button style="border-right: 1px solid gray;" class="login_btn_open">로그인</button> 
+					<button class="reg_btn_open">회원가입</button> 
+				<% } else { %>
+					<% if (userLevel == 'normal') { -%>
+						<a href="/user/logout"><button>LOGOUT</button></a>
+					<% } else { -%>
+						<a href="/admin"><button  style="border-right: 1px solid gray;" >ADMIN PAGE</button> </a>
+						<a href="/user/logout"><button>LOGOUT</button></a>
+					<% } -%>
+					
+				<% } %>
+				
+	
+			<img src="assets/images/icon_reg.png">
+		</div>
+	</ul>
+</nav>
+
+
+<div class="loginForm">
+	<button class="close_log_btn">X</button>
+	<h2>LOGIN</h2>
+	<div class="login_inputs" style="text-align: left;">
+		<form action="/user/login" method="POST" id="log_inner_form">
+			<small style="color: red;"></small>
+			<input type="text" name="log_user_id" placeholder="로그인">
+			<small style="color: red;"></small>
+			<input type="password" name="log_password" placeholder="회원가입">
+			<button id="login_credentials" type="button">로그인</button>
+			<button class="regOpen"  type="button">회원가입</button>
+		</form>
+	</div>
+</div>
+
+
+<div class="regForm">
+	<form action="/user/register" method="POST" id="reg_inner_form">
+		<button class="close_reg_btn" type="button">X</button>
+		<h2>회원가입</h2>
+		<div class="reg_inputs">
+			<small></small>
+			<input type="text" name="reg_user_id" placeholder="아이디">
+			<small></small>
+			<input type="password" name="reg_password" placeholder="비밀번호">
+			<small></small>
+			<input type="password" name="reg_password2" placeholder="비밀번호 확인">
+			<small></small>
+			<input type="text" name="reg_name" placeholder="이름">
+			<small></small>
+			<input type="text" name="reg_cellphone" placeholder="휴대전화">
+			<small></small>
+			<input type="text" name="reg_email" placeholder="이메일 ">
+			<button type="button" id="register_credentials">확인</button>
+		</div>
+	</form>
+</div>

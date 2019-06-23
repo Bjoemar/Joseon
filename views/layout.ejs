@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= name%></title>
+	 <% include partials/header %>
+</head>
+<body>
+	<% include partials/navigation %>
+
+	<div class="event_content_holder">
+		<div class="inner_event_holder">
+			<div class="event_header">
+				<label><%= name%></label>
+			</div>
+
+			<div class="event_content">
+				<% var resLen = result.length;
+					if (resLen > 0) {
+						for (i = 0; i < resLen; i++) { %>
+							<div class="event_title_content">
+								<a href="/view?type=<%= result[i]['type']%>&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+							</div>
+				<%
+						}
+					}
+				%>
+
+			</div>
+		</div>
+	</div> <!-- end event_content_holder -->
+	<% include partials/footer.ejs%>
+</body>
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

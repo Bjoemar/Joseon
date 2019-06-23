@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><% if (typeof result != 'undefined') { -%><%= result[0]['title'] %><% } -%></title>
+	 <% include partials/header %>
+</head>
+<body>
+	<% include partials/navigation %>
+	<div class="container">
+		<div class="views">
+			<div class="viewTitle">
+				<div class="views_content">
+					<% if (typeof result != 'undefined') { -%>
+							
+						<% var resLen = result.length;
+							if (resLen > 0) { %>
+								<h2><%= result[0]['title'] %></h2>
+									
+								<%- result[0]['content']%>
+						<% } %>
+					<% } -%>
+				
+				<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include partials/footer.ejs%>
+</body>
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN</title>
+	 <% include mobile_partials/header %>
+</head>
+<body>
+  	<% include mobile_partials/navigation %>
+
+  		
+  		<div class="container">
+  			
+
+  			<div class="login-holder">
+  				
+  				<div class="title-login">
+  					
+  					<h1>LOGIN</h1>
+
+  				</div>
+  				<form action="/user/login" method="POST" id="log_inner_form">
+	  				<div class="email-form">
+	  					<small></small>
+	  					<input type="text" name="log_user_id" placeholder="로그인" style="padding: 5px;">
+	  				</div>
+
+	  				<div class="pass-form">
+	  					<small></small>
+	  					<input type="password" name="log_password" placeholder="회원가입" style="padding: 5px;">
+	  				</div>
+
+	  				<div class="button-holder">
+
+	  					<button type="button" type="button" class="login-btn btn-dark" id="login_credentials">로그인</button>
+	  					<a href="/m_register"><button type="button" class="login-btn btn-dark">회원가입</button></a>
+	  				</div>
+  				</form>
+
+  			</div>
+
+  		</div>
+
+
+  	<% include mobile_partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

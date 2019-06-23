@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAPS</title>
+   <% include mobile_partials/header %>
+</head>
+<body>
+    <% include mobile_partials/navigation %>
+
+
+
+    
+    <div class="content_holder">
+
+        <div id="web-maps" data-loc="<% if (typeof place_search != 'undefined') { %> <%= place_search%>"> <% } -%>">
+        
+        </div> <!-- end web-maps -->
+
+
+      <div class="web-listing-area mb-4">
+
+        <div class="search_holder">
+          
+          <div class="search_box">
+              <img src="assets/images/searchicon.png">
+              <input type="text" name="placeSearch" placeholder="원하시는 지역명, 지하철역, ">
+              <button id="search_place">찾아보기</button>
+            </div> 
+        </div>
+
+        <div class="content_buttons mb-3" style="text-align: center; padding: 10px;" >
+              <button class="back_content btn-dark btn " style="width: 100%;">Back</button>
+        </div>
+        <div class="clear"></div>
+
+        <div class="data-res-con" id="content_holder">
+
+          <div class="author_image_holder">
+
+            <img class="author_img" src="assets/images/profile.jpg">
+            <h2 style="display: none;" class="emptyIndicator">No Content</h2>
+            <small style="display: none;" class="emptyIndicator" ></small><br>
+          </div>
+
+          <div class="author_info">
+            <table style="width: 100%;">
+              <tr>
+                <th>이름 :</th>
+                <td class="author_name"></td>
+              </tr>
+              <tr>
+                <th>연락처 :</th>
+                <td class="author_number"></td>
+              </tr>
+              <tr>
+                <th>카카오톡 :</th>
+                <td class="author_kakao"></td>
+              </tr>
+              <tr>
+                <th>텔레그램 :</th>
+                <td class="author_telegram"></td>
+              </tr>
+              <tr>
+                <th>지역 :</th>
+                <td class="author_address"></td>
+              </tr>
+              <tr>
+            </table>
+
+          </div> <!-- end author info -->
+
+          <div class="author_contents">
+            
+          </div>
+          <div class="web-listing-area-footer">
+            <a href="" target="#_blank" class="kakao_link"><img src="assets/images/kakao.jpg"></a>
+            <a href="" target="#_blank" class="telegram_link"><img src="assets/images/tele.jpg"></a>
+          </div>
+
+          <div class="clear"></div>
+        </div>  
+
+
+
+        <div class="data-res-con" id="content_holder1">
+
+        </div> <!-- end content_holder1 -->
+
+
+        <div class="clear"></div>
+      
+      </div> <!-- end web-listing-area -->
+
+    </div> <!-- end content_holder -->
+
+    
+    
+    <% include mobile_partials/footer %>
+</body>
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+<script type="text/javascript" src="./assets/js/map_script.js" ></script>
+</html>

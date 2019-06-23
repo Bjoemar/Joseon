@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HOME</title>
+	 <% include partials/header %>
+</head>
+<body>
+  	<% include partials/navigation %>
+
+  	<div class="home_banner">
+  		<div class="inner_banner_content">
+  			<div class="inner_banner">
+  				<form action="maps" method="POST">
+  					<div class="search_box">
+  						<img src="assets/images/searchicon.png">
+  						<input type="text" name="placeSearch" placeholder="원하시는 지역명, 지하철역, 단지명(아파트명)을 입력해주세요">
+  						<button id="search_place">찾아보기</button>
+  					</div> 
+  				</form>
+  			</div> <!-- end inner_banner -->
+  		</div> <!-- end inner_banner_content -->
+  	</div>
+
+
+  	<div class="intro_holder">
+  		<div class="intro_col">
+  			<img src="assets/images/banner_agent_register.jpg">
+  		</div>
+  		<div class="intro_col">
+  			<div class="intro_col_header">
+  				<label>이벤트</label>
+  				<a href="/event?type=event"><button>더보기</button></a>
+  			</div>
+
+        	<% var resLen = result.length;
+              if (resLen > 0) {
+                for (i = 0; i < resLen; i++) { %>
+                  <% if (result[i]['type'] == 'event' ) { -%>
+                     <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                  <% } -%>
+
+             <%
+                }
+              }
+             %>
+
+  				
+  		</div>
+  		<div class="intro_col">
+  			<div class="intro_col_header">
+  				<label>공지사항</label>
+  				<a href="/notice?type=notice"><button>더보기</button></a>
+  			</div>
+
+            <% var resLen = result.length;
+               if (resLen > 0) {
+                 for (i = 0; i < resLen; i++) { %>
+                   <% if (result[i]['type'] == 'notice' ) { -%>
+                      <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                   <% } -%>
+
+              <%
+                 }
+               }
+              %>
+  							
+  		</div>
+  	</div> <!-- end intro holder -->
+  	
+  	<div class="clear"></div>
+
+  
+  	<% include partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

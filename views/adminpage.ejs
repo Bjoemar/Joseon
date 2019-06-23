@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ADMINISTRATOR</title>
+	 <% include partials/header %>
+
+</head>
+<body>
+  	<% include partials/navigation %>
+
+    <div class="adminContentHolder" style="padding-top: 50px;">
+
+         <div class="container">
+            <h2>Administrator</h2>       
+             <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+               <li class="nav-item" style="width: 50%; text-align: center;">
+                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mark Location</a>
+               </li>
+               <li class="nav-item"  style="width: 50%; text-align: center;">
+                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">AddContent</a>
+               </li>
+             </ul>
+             <div class="tab-content" id="myTabContent">
+               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="height: 600px;">
+                   <div class="markLocation">
+                       
+                       <div class="addB_icon">
+                        <div class="add_form">
+                            <h1>Mark Location</h1>
+                            <form action="/saveLocation" method="POST">
+                                <label>Place Name</label>
+                                <input type="text" name="placename" class="form-control">
+                                <label>Langtitude</label>
+                                <input type="text" name="langtitude" class="form-control">
+                                <label>Longtitude</label>
+                                <input type="text" name="longtitude" class="form-control">
+                                <button class="btn btn-dark mt-3">Place Location</button>
+                            </form>
+                        </div> <!-- end add_form -->
+                       </div> <!-- end addB_icon -->
+                   </div>
+
+
+               </div>
+               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height: 900px;">
+                   
+                   <div class="container">
+                    <div class="addFormContent">
+                        <h2>Add Website Content</h2>
+
+                        <div class="content_form">
+                            <label>Title</label>
+                            <input type="text" name="" class="content_title">
+                            <label>Categories</label>
+                            <select class="categ_form">
+                                <option value="event">이벤트</option>
+                                <option value="notice">공지사항</option>
+                                <option value="game">게임방법</option>
+                            </select>
+                            <label>Content</label>
+                            <textarea id="contents"></textarea>
+
+                            <button id="add_web_content">POST ARTICLE</button>
+                        </div> <!-- end content_form -->
+                    </div> <!-- end addFormContent -->
+                   </div>
+               </div>
+             </div>
+        </div>
+    </div>
+
+
+  	<% include partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>
