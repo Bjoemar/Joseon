@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
         MongoClient.connect(url,function(err,db){
             var dbo = db.db('zigbang');
-            dbo.collection("web_content").find().toArray(function(err,result){
+            dbo.collection("web_content").find().sort({ _id: -1 }).toArray(function(err,result){
 
                 if(req.session != null) {
                   if(req.useragent.isMobile) {
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
                     
                 } else {
                    if(req.useragent.isMobile) {
-                       res.render('./inmobile_indexdex' , {result : result});
+                       res.render('./mobile_index' , {result : result});
                    } else {
                       res.render('./index' , {result : result});
                    }
@@ -65,7 +65,7 @@ router.get('/event', (req, res) => {
     var type = req.query.type;
 	MongoClient.connect(url,function(err,db){
  		var dbo = db.db('zigbang');
- 		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
+ 		dbo.collection("web_content").find({type : type}).sort({ _id: -1 }).toArray(function(err,result){
              if(result.length > 0) {
 
                 if(req.useragent.isMobile) {
@@ -77,7 +77,7 @@ router.get('/event', (req, res) => {
              } else {
 
                 if(req.useragent.isMobile) {
-                    res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                    res.render('./mobile_index' , {userLevel : req.session.userLevel});
                 } else {
                     res.redirect('/' , {userLevel : req.session.userLevel});
                 }
@@ -96,7 +96,7 @@ router.get('/notice', (req, res) => {
     var type = req.query.type;
   	MongoClient.connect(url,function(err,db){
   		var dbo = db.db('zigbang');
-  		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
+  		dbo.collection("web_content").find({type : type}).sort({ _id: -1 }).toArray(function(err,result){
              if(result.length > 0) {
 
               if(req.useragent.isMobile) {
@@ -108,7 +108,7 @@ router.get('/notice', (req, res) => {
              } else {
                 
                 if(req.useragent.isMobile) {
-                    res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                    res.render('./mobile_index' , {userLevel : req.session.userLevel});
                 } else {
                     res.redirect('/' , {userLevel : req.session.userLevel});
                 }
@@ -124,7 +124,7 @@ router.get('/game', (req, res) => {
     var type = req.query.type;
   	MongoClient.connect(url,function(err,db){
   		var dbo = db.db('zigbang');
-  		dbo.collection("web_content").find({type : type}).toArray(function(err,result){
+  		dbo.collection("web_content").find({type : type}).sort({ _id: -1 }).toArray(function(err,result){
              if(result.length > 0) {
 
                   if(req.useragent.isMobile) {
@@ -137,7 +137,7 @@ router.get('/game', (req, res) => {
              } else {
                
                    if(req.useragent.isMobile) {
-                       res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                       res.render('./mobile_index' , {userLevel : req.session.userLevel});
                    } else {
                        res.redirect('/' , {userLevel : req.session.userLevel});
                    }
@@ -152,22 +152,28 @@ router.get('/game', (req, res) => {
 
 
 router.get('/admin', (req, res) => {
-  	if(req.session.userLevel == 'normal') {
+
+  if(req.session.userLevel){
+      
+          if(req.session.userLevel == 'normal') {
 
 
-      if(req.useragent.isMobile) {
-          res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
-      } else {
-          res.redirect('/' , {userLevel : req.session.userLevel});
-      }
-	} else {
+            if(req.useragent.isMobile) {
+                res.render('./mobile_index' , {userLevel : req.session.userLevel});
+            } else {
+                res.redirect('/' , {userLevel : req.session.userLevel});
+            }
 
+        } else {
+          if(!req.useragent.isMobile) {
+              res.render('./adminpage', {userLevel : req.session.userLevel});
+          } 
+          
+        }
+  }  else {
+      res.send('PAGE NOT FOUND')
+  }
 
-    if(!req.useragent.isMobile) {
-        res.render('./adminpage', {userLevel : req.session.userLevel});
-    } 
-		
-	}
 });
 
 
@@ -233,7 +239,7 @@ router.get('/view',function(req,res){
         } else {
 
             if(req.useragent.isMobile) {
-                res.render('./inmobile_indexdex' , {userLevel : req.session.userLevel});
+                res.render('./mobile_index' , {userLevel : req.session.userLevel});
             } else {
                 res.redirect('/' , {userLevel : req.session.userLevel});
             }

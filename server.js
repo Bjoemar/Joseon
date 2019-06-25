@@ -138,10 +138,6 @@ io.on('connection',function(socket){
 
 
 
-
-
-
-
 	socket.on('loadMapData',function(){
 		socketid = socket.id;
 
