@@ -76,11 +76,7 @@ router.get('/event', (req, res) => {
  			     
              } else {
 
-                if(req.useragent.isMobile) {
-                    res.render('./mobile_index' , {userLevel : req.session.userLevel});
-                } else {
-                    res.redirect('/' , {userLevel : req.session.userLevel});
-                }
+                    res.redirect('/');
                
              }
  			db.close();
@@ -107,11 +103,9 @@ router.get('/notice', (req, res) => {
   			   
              } else {
                 
-                if(req.useragent.isMobile) {
-                    res.render('./mobile_index' , {userLevel : req.session.userLevel});
-                } else {
-                    res.redirect('/' , {userLevel : req.session.userLevel});
-                }
+
+                    res.redirect('/');
+              
              }
   			db.close();
   		});
@@ -136,11 +130,9 @@ router.get('/game', (req, res) => {
 
              } else {
                
-                   if(req.useragent.isMobile) {
-                       res.render('./mobile_index' , {userLevel : req.session.userLevel});
-                   } else {
-                       res.redirect('/' , {userLevel : req.session.userLevel});
-                   }
+
+                       res.redirect('/');
+                   
              }
   			db.close();
   		});
@@ -226,23 +218,30 @@ router.get('/view',function(req,res){
       'type' : type,
     }
     dbo.collection('web_content').find(query).toArray(function(err,result){
+
         if(result.length > 0) {
 
+          if(req.session.userLevel) {
+              if(req.useragent.isMobile) {
+                  res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
+              } else {
+                  res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
+              }
 
-          if(req.useragent.isMobile) {
-              res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
           } else {
-              res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
+              if(req.useragent.isMobile) {
+                  res.render('./mobile_view' ,{'result' : result });
+              } else {
+                  res.render('./view' ,{'result' : result });
+              }
+
           }
 
-           
+          
         } else {
-
-            if(req.useragent.isMobile) {
-                res.render('./mobile_index' , {userLevel : req.session.userLevel});
-            } else {
+      
                 res.redirect('/' , {userLevel : req.session.userLevel});
-            }
+     
         
         }
 
