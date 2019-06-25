@@ -1,3 +1,6 @@
+body {
+	min-width: 1200px;
+}
 .note-image-popover{
   display:none!important
 }
@@ -151,7 +154,26 @@ nav li span {
 	width: 30%;
 	float: left;
 	margin: 1.5%;
+	height: 200px;
+	overflow-y: scroll;
 }
+
+.intro_col::-webkit-scrollbar {
+	display: none;
+}
+
+
+.intro_col a{
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.intro_col small {
+	float: right;
+	font-size: 11px;
+	color: #aaa;
+}
+
 
 .intro_col p {
 	font-size: 12px;

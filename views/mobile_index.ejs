@@ -54,7 +54,7 @@
                                }
                               %>
 
-                              
+
               </div>
 
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -64,7 +64,7 @@
                                  <% if (result[i]['type'] == 'notice' ) { -%>
                                  <div class="description <% if ((i % 2) == 0 ) { -%> class_even <% }%>">
                                     <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                                    <small style="float: right;"></small>
+                                    <small style="float: right;"><%= result[i]['date']%></small>
                                   </div>
                                  <% } -%>
                             <%
@@ -80,7 +80,7 @@
                                  <% if (result[i]['type'] == 'game' ) { -%>
                                  <div class="description <% if ((i % 2) == 0 ) { -%> class_even <% }%>">
                                     <a style="text-decoration: none; color: black;" href="/view?type=game&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                                    <small style="float: right;"></small>
+                                    <small style="float: right;"><%= result[i]['date']%></small>
                                   </div>
                                  <% } -%>
                             <%
