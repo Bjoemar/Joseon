@@ -143,17 +143,17 @@ nav li span {
 
 
 .intro_holder {
-	padding-left: 27%;
-	padding-right: 27%;
+	padding-left: 15%;
+	padding-right: 15%;
 	padding-top: 10px;
 
 }
 
 
 .intro_col {
-	width: 30%;
+	width: 17.8%;
 	float: left;
-	margin: 1.5%;
+	margin: 1.1%;
 	height: 200px;
 	overflow-y: scroll;
 }
@@ -164,13 +164,14 @@ nav li span {
 
 
 .intro_col a{
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: 600;
 }
 
 .intro_col small {
 	float: right;
-	font-size: 11px;
+	margin-top: 7px;
+	font-size: 10px;
 	color: #aaa;
 }
 
