@@ -447,7 +447,7 @@ router.post('/modifyData',  function(request,response){
 
   })
 
-  // response.redirect('/maps');
+  response.redirect('/maps');
 })
 
 
