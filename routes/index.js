@@ -286,7 +286,7 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
       var company_area = fields.company_area;
       var filename = uuidv4();
       var extension = path.extname(files.agent_pic.name);
-      var newpath = 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/assets/images/' + filename + extension;
+      var newpath = 'assets/images/' + filename + extension;
 
       MongoClient.connect(url,function(err,db){
           if (err) throw err;
@@ -296,7 +296,7 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
               "langtitude" : langtitude,
               "longtitude" : longtitude,
               "name" : placeName,
-              "agent_pic" : newpath,
+              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com'+newpath,
               "company_name" : company_name,
               "company_phone" : company_phone,
               "company_area" : company_area,
