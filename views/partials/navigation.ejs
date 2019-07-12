@@ -8,7 +8,7 @@
 		<li><a href="maps" class="web-nav-link">홀덤바 위치</a></li>
 		<li><a href="event?type=event" class="web-nav-link">이벤트</a></li>
 		<li><a href="notice?type=notice" class="web-nav-link">공지사항</a></li>
-		<li><a href="game?type=game" class="web-nav-link">게임방법</a></li>
+		<li><a href="gameMethod?type" class="web-nav-link">게임방법</a></li>
 		<li><a href="#" class="web-nav-link">Youtube</a></li>
 
 		<div class="right_nav_cont">
@@ -21,7 +21,7 @@
 					<% if (userLevel == 'normal') { -%>
 						<a href="/user/logout"><button>LOGOUT</button></a>
 					<% } else { -%>
-						<a href="/admin"><button  style="border-right: 1px solid gray;" >ADMIN PAGE</button> </a>
+						<a href="/admin" class="admin_btn"><button  style="border-right: 1px solid gray;" >ADMIN PAGE</button> </a>
 						<a href="/user/logout"><button>LOGOUT</button></a>
 					<% } -%>
 					
@@ -48,6 +48,7 @@
 		</form>
 	</div>
 </div>
+
 
 
 <div class="regForm">

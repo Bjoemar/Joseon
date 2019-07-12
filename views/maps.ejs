@@ -1,165 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>MAPS</title>
 	 <% include partials/header %>
 </head>
 <body>
   	<% include partials/navigation %>
 
-
-
   	
   	<div class="content_holder">
 
-  		<div class="addContent_modal">
-  			<button class="addContent_modal_close">X</button>
-  			<form id="content_form">
-  				<div class="modalLeftContent">
-  					<input type="text" name="placeName" class="content_add_place" style="display: none;">		
-  					<label>이미지첨부</label>
-  					<input type="file" name="author_image">
-  					<label>이름</label>
-  					<input type="text" name="author_name">
-  					<label>연락처</label>
-  					<input type="text" name="author_number">
-  					<label>카카오톡</label>
-  					<input type="text" name="author_kakao">
-  					<label>텔레그램</label>
-  					<input type="text" name="author_telegram">
-  					<label>지역</label>
-  					<input type="text" name="author_address">
-  					<label>카카오톡-link</label>
-  					<input type="text" name="author_kakao_link">
-  					<label>텔레그램-link</label>
-  					<input type="text" name="author_telegram_link">
-  				</div> <!-- end modalLefContent -->
 
-  				<div class="modalRightContent">
-  					<div class="content_input">
-  						<textarea id="content_input" name="author_contents"></textarea>
-  						<button id="uploadContent" type="button" class="addContent_uploadBtn btn btn-dark">Upload Content</button>
-  					</div>
-
-  				</div> <!-- end ModalRightContent -->
-  			</form>
-
-  		</div> <!-- End AddContent Modal -->
+        <div class="maps_search">
+            <form action="maps" method="POST">
+                <div class="search_box" style="width: 100%;">
+                    <img src="assets/images/searchicon.png">
+                    <input type="text" name="placeSearch" placeholder="원하시는 지역을 입력해주세요" style="width: 64%;">
+                    <button id="search_place" style="width: 100px;  border: none;">찾아보기</button>
+                </div> 
+            </form>
+            <button class="btn btn-secondary" style="width: 100%; border-radius: 0;">다른방식으로 검색하기</button>
+        </div>
 
 
-
-  		<div class="updateContent_modal">
-  			<button class="updateContent_modal_close">X</button>
-  			<form id="edit_content_form">
-  				<div class="modalLeftContent">
-  					<input type="text" name="placeName" class="content_add_place" style="display: none;">		
-  					<label>이미지첨부</label>
-  					<input type="file" name="author_image">
-  					<label>이름</label>
-  					<input type="text" name="author_name">
-  					<label>연락처</label>
-  					<input type="text" name="author_number">
-  					<label>카카오톡</label>
-  					<input type="text" name="author_kakao">
-  					<label>텔레그램</label>
-  					<input type="text" name="author_telegram">
-  					<label>지역</label>
-  					<input type="text" name="author_address">
-  					<label>카카오톡-link</label>
-  					<input type="text" name="author_kakao_link">
-  					<label>텔레그램-link</label>
-  					<input type="text" name="author_telegram_link">
-  				</div> <!-- end modalLefContent -->
-
-  				<div class="modalRightContent">
-  					<div class="content_input">
-  						<textarea id="edit_content_input" name="author_contents"></textarea>
-  						<button id="editContent" type="button" class="addContent_uploadBtn btn btn-dark">Upload Content</button>
-  					</div>
-
-  				</div> <!-- end ModalRightContent -->
-  			</form>
-
-  		</div> <!-- End AddContent Modal -->
-
-    		<div id="web-maps" data-loc="<% if (typeof place_search != 'undefined') { %> <%= place_search%>"> <% } -%>">
-    		
-    		</div> <!-- end web-maps -->
+  		<div id="web-maps" data-loc="<% if (typeof place_search != 'undefined') { %><%=place_search%>"><% } -%>">
+  		
+  		</div> <!-- end web-maps -->
 
 
   		<div class="web-listing-area">
-  			<div class="content_buttons" style="text-align: center;">
-          <% if (typeof userLevel != 'undefined') { -%>
-            <% if (userLevel == 'admin') { -%>
-              <button class="addmaps_content" style="display: none;">Add Content</button>
-              <button class="editmaps_content">Update Content</button>
-              <button class="deletemaps_content">Delete Content</button>
-              <button class="back_content" style="display: none;">Back</button>
-            <% } else { -%>
-              <button class="back_content" style="display: none;">Back</button>
-            <% } -%>
-
-          <% } -%>
-            
-
-  			
-  			</div>
-
-  			<div class="data-res-con" id="content_holder">
-
-  				<div class="author_image_holder">
-
-  					<img class="author_img" src="assets/images/profile.jpg">
-            <h2 style="display: none;" class="emptyIndicator">No Content</h2>
-            <small style="display: none;" class="emptyIndicator" ></small><br>
-  				</div>
-
-  				<div class="author_info">
-  					<table style="width: 100%;">
-  						<tr>
-  							<th>이름 :</th>
-  							<td class="author_name"></td>
-  						</tr>
-  						<tr>
-  							<th>연락처 :</th>
-  							<td class="author_number"></td>
-  						</tr>
-  						<tr>
-  							<th>카카오톡 :</th>
-  							<td class="author_kakao"></td>
-  						</tr>
-  						<tr>
-  							<th>텔레그램 :</th>
-  							<td class="author_telegram"></td>
-  						</tr>
-  						<tr>
-  							<th>지역 :</th>
-  							<td class="author_address"></td>
-  						</tr>
-  						<tr>
-  					</table>
-
-  				</div> <!-- end author info -->
-
-  				<div class="author_contents">
-  					
-  				</div>
-  				<div class="web-listing-area-footer">
-  					<a href="" target="#_blank" class="kakao_link"><img src="assets/images/kakao.jpg"></a>
-  					<a href="" target="#_blank" class="telegram_link"><img src="assets/images/tele.jpg"></a>
-  				</div>
-
-  				<div class="clear"></div>
-  			</div>	
-
-
-  			<div class="data-res-con" id="content_holder1">
-
-  			</div> <!-- end content_holder1 -->
-
-
-  			<div class="clear"></div>
-  		
+	
   		</div> <!-- end web-listing-area -->
 
   	</div> <!-- end content_holder -->
@@ -172,4 +43,5 @@
 <script type="text/javascript" src="./assets/js/script.js"></script>
 <script type="text/javascript" src="./assets/js/emailValidate.js"></script>
 <script type="text/javascript" src="./assets/js/map_script.js" ></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=caf8fd666b92b96a683d22a584997032&libraries=services,clusterer,drawing"></script>
 </html>

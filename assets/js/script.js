@@ -129,3 +129,49 @@ $('#add_web_content').click(function(){
 	}
 });
 
+
+
+$('.g-navs-intro').click(function(){
+	$('.g-navs').removeClass('g-active');
+	$(this).addClass('g-active')
+	$('.g-navs-content').hide();
+	$('.g-intro').show();
+})
+
+$('.g-navs-progress').click(function(){
+	$('.g-navs').removeClass('g-active');
+	$(this).addClass('g-active')
+	$('.g-navs-content').hide();
+	$('.g-progress').show();
+})
+
+$('.g-navs-rules').click(function(){
+	$('.g-navs').removeClass('g-active');
+	$(this).addClass('g-active')
+	$('.g-navs-content').hide();
+	$('.g-rules').show();
+})
+
+
+$('#gameM-1').summernote({
+	placeholder: 'Start Here ..',
+	height: 300,
+	focus : true,
+	disableResizeEditor: true,
+});
+
+$('#gameM-2').summernote({
+	placeholder: 'Start Here ..',
+	height: 300,
+	focus : true,
+	disableResizeEditor: true,
+});
+
+
+$('#gameM-3').summernote({
+	placeholder: 'Start Here ..',
+		height: 300,
+		focus : true,
+		disableResizeEditor: true,
+	});
+

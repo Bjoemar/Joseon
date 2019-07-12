@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>게임방법</title>
+	 <% include partials/header %>
+</head>
+<body>
+  	<% include partials/navigation %>
+
+  	<div class="content_holder" style="height: 800px;">
+
+  		<div id="web-game-method">
+  		    <div class="game-method-inner-content">
+                <div class="game-method-header">
+                    <% if (typeof img != 'undefined') { -%>
+                         <img src="<%=img%>">      
+                    <% } -%>
+
+                  
+                </div>
+            </div>
+
+            <div class="game-method-cat">
+                <div class="game-method-navs">
+                    <div class="g-navs  g-navs-intro g-active">게임소개</div>
+                    <div class="g-navs g-navs-progress">게임진행</div>
+                    <div class="g-navs g-navs-rules">게임규칙</div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="g-navs-content g-intro" style="display: block;">
+                    <% if (typeof data != 'undefined') { -%>
+                                                
+                        <% var resLen = data.length;
+                            if (resLen > 0) { %>       
+                                <%- data[0]['con1']%>
+                        <% } %>
+                    <% } -%>
+
+                </div>
+
+                <div class="g-navs-content g-progress">
+                    <% if (typeof data != 'undefined') { -%>
+                                                
+                        <% var resLen = data.length;
+                            if (resLen > 0) { %>       
+                                <%- data[0]['con2']%>
+                        <% } %>
+                    <% } -%>
+      
+                </div>
+
+                <div class="g-navs-content g-rules">
+                    <% if (typeof data != 'undefined') { -%>
+                                                
+                        <% var resLen = data.length;
+                            if (resLen > 0) { %>       
+                                <%- data[0]['con3']%>
+                        <% } %>
+                    <% } -%>
+                </div>
+
+            </div>
+  		</div> <!-- end web-maps -->
+
+
+  		<div class="web-listing-area" style="overflow: hidden;">
+	       <div class="game-method-side-header">
+            <div class="g-navs-title">
+                <h2> 게임방법</h2>
+            </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game1"> < 블랙잭</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game2"> < 바카라</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game3"> < 룰렛</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game4"> < 빅휠</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game5"> < 다이사이</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game6"> < 캐리비안스터드포커</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game7"> < 카지노워</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game8"> < 텍사스홀뎀</a>
+               </div>
+               <div class="game-method-box">
+                   <a href="gameMethod?type=game9"> < 쓰리카드포커</a>
+               </div>
+
+
+           </div>
+  		</div> <!-- end web-listing-area -->
+
+        <div class="clear"></div>
+  	</div> <!-- end content_holder -->
+
+
+</body>
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+<!-- <script type="text/javascript" src="./assets/js/map_script.js" ></script> -->
+
+</html>

@@ -1,3 +1,7 @@
+.modal-backdrop {
+	position: static!important;
+}
+
 body {
 	min-width: 1200px;
 }
@@ -154,7 +158,7 @@ nav li span {
 	width: 17.8%;
 	float: left;
 	margin: 1.1%;
-	height: 200px;
+	height: 400px;
 	overflow-y: scroll;
 }
 
@@ -317,7 +321,6 @@ footer label {
 .content_holder {
 	width: 100%;
 	position: relative;
-	background: red;
 }
 
 #web-maps {
@@ -330,6 +333,7 @@ footer label {
 .web-listing-area {
 	height: 856px;
 	position: absolute;
+	overflow-y: scroll;
 	right: 0;
 	width: 20%;
 	background: #f3f3f3;
@@ -804,37 +808,36 @@ footer label {
 }
 
 .view_img {
-	width: 50%;
-	float: left;
-	padding: 20px;
+	width: 100%;
+	padding: 10px;
 }
 
 .view_img img {
 	width: 100%;
-	height: 150px;
+	height: 350px;
 	object-fit: cover;
-	border-radius: 100px;
+	/*border-radius: 100px;*/
 }
 
 .view_info {
-	float: right;
-	width: 50%;
-	padding-top: 30px;
+	/*float: right;*/
+	width: 100%;
+	padding: 10px;
 }
 
 .view_info label {
 	display: block;
-	font-size: 12px;
+	font-size: 16px;
 	font-weight: 900;
 	margin: 0;
 }
 
 .view_info th {
-	width: 70px;
+	width: 77px;
 }
 
 .view_info td{
-	font-size: 12px;
+	font-size: 16px;
 	margin-top: 5px;
 }
 
@@ -1042,4 +1045,93 @@ footer label {
 }
 
 
+.maps_search {
+	width: 400px;
+	/*height: 80px;*/
+	/*background: white;*/
+	/*border:2px solid #ccc;*/
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	z-index: 50;
+}
 
+
+
+#web-game-method {
+	position: absolute;
+	left: 0;
+	width: 80%;
+	padding: 20px;
+	padding-left: 200px;
+}
+
+.game-method-header {
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.game-method-inner-content {
+	border-bottom: 3px solid #ffa409;
+}
+
+.game-method-cat {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.game-method-navs {
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
+
+.g-navs {
+	width: 200px;
+	float: left;
+	padding: 10px;
+	border : 1px solid #ccc;
+	background: #fcfcfc;
+	height: 50px;
+	cursor: pointer;
+
+}
+
+.g-active {
+	border-top : 3px solid  #ffa409;
+	background: white;
+}
+
+.g-navs-content {
+	height: 500px;
+	width: 100%;
+	padding: 20px;
+	display: none;
+}
+
+
+
+.game-method-box {
+	width: 100%;
+	border-bottom: 1px solid  #ccc;
+	height: 70px;
+	padding: 20px;
+}
+
+.game-method-box a {
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+
+	font-weight: 600;
+}
+
+.g-navs-title {
+	height: 115px;
+	width: 100%;
+	padding: 40px;
+	text-align: center;
+	background: #ccc;
+	border-bottom: 5px solid #aaa;
+
+}

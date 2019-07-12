@@ -75,25 +75,11 @@
 
           <div class="intro_col">
             <div class="intro_col_header">
-              <label>게임방법</label>
-              <a href="/game?type=game"><button>더보기</button></a>
+              <label>프리미엄 업체</label>
             </div>
-
-                <% var resLen = result.length;
-                   if (resLen > 0) {
-                     for (i = 0; i < resLen; i++) { %>
-                       <% if (result[i]['type'] == 'game' ) { -%>
-                       <div class="home_cont">
-                          <a style="text-decoration: none; color: black;" href="/view?type=game&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                          <small><%= result[i]['date']%></small>
-                        </div>  
-                       <% } -%>
-
-                  <%
-                     }
-                   }
-                  %>
-                    
+            <div class="home-image-holder">
+              <img src="assets/images/banner_agent_register.jpg" style="height: 400px;">
+            </div>
           </div>
 
 

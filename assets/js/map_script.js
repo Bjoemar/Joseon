@@ -94,10 +94,10 @@ var callback = function(result,status) {
 	var place_arr = [];
 
 	socket.on('mapData',function(data){
+		
 		var dataLen = data.length;
 		for (i = 0; i < dataLen; i++) {
 			var pos = new daum.maps.LatLng(data[i]['langtitude'] , data[i]['longtitude']);
-
 			placeObj = {
 				'position' : pos,
 				'place_id' : data[i]['_id'],
@@ -110,8 +110,8 @@ var callback = function(result,status) {
 		return place_arr;
 	});
 
-	setTimeout(function(){
 
+	setTimeout(function(){
 		var place_len = place_arr.length;
 
 		var mark_place = [];
@@ -157,51 +157,51 @@ var callback = function(result,status) {
 				$('.content_add_place').val(this['name']);
 				$('#content_holder1').hide();
 				$('#content_holder').show();
-				$('.content_buttons button').hide();
-				$('.back_content').show();
 				var placeName = this['name'];
 
-				$('.author_image_holder small').html(placeName)
+				$('.author_image_holder small').html(placeName);
 			    socket.emit('placeSearch' , {'placeName' : placeName});
 			});
 
 		}
 
 
-	},3000);
+	},4500);
 
 
 	socket.on('loadContent',function(data){
-		if(data.length > 0) {
-			$('.editmaps_content').show();
-			$('.editmaps_content').val(data[0]._id);
-			$('.deletemaps_content').show();
-			$('.author_img').attr('src',data[0].authorImage);
-			$('.author_name').html(data[0].authorName);
-			$('.author_number').html(data[0].authorNumber);
-			$('.author_kakao').html(data[0].authorKakao);
-			$('.author_telegram').html(data[0].authorTelegram);
-			$('.author_address').html(data[0].authorAddress);
-			$('.author_contents').html(data[0].authorContents);
-			$('.kakao_link').attr('href', data[0].kakaoLink);
-			$('.telegram_link').attr('href', data[0].telegram_link);
-			$('.emptyIndicator').hide();
-		} else {
-			$('.author_img').attr('src','assets/images/profile.jpg');
-			$('.author_name').html('');
-			$('.author_number').html('');
-			$('.author_kakao').html('');
-			$('.author_telegram').html('');
-			$('.author_address').html('');
-			$('.author_contents').html('');
-			$('.kakao_link').attr('href', '#');
-			$('.telegram_link').attr('href', '#');
-			$('.addmaps_content').show();
-			$('.emptyIndicator').show();
-			$('.editmaps_content').hide();
-			$('.deletemaps_content').hide();
 
-		}
+
+		if(data.length > 0) {
+
+			$('.web-listing-area').html('<div class="defaultview">'+
+				
+					'<div class="view_img">'+
+						' <button class="btn btn-sm btn-dark mb-2 mt-2">Update</button> &nbsp; <button class="btn btn-sm btn-danger mb-2 mt-2">delete</button>'+
+						'<img src="'+data[0].agent_pic+'">'+
+					'</div>'+
+					'<div class="view_info">'+
+						'<table style="width: 100%;">'+
+							'<tr>'+
+								'<th><label>업체명 : </label></th>'+
+								'<td>'+data[0].company_name+'</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<th><label>연락처 : </label></th>'+
+								'<td>'+data[0].company_phone+'</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<th><label>지역 : </label></th>'+
+								'<td>'+data[0].company_area+'</td>'+
+							'</tr>'+
+						'</table>'+
+					'</div>'+
+					'<div class="clear"></div>'+
+
+					
+				'</div>')
+
+		} 
 	});
 
 
@@ -292,53 +292,41 @@ var callback = function(result,status) {
 
 
 	socket.on('mapDataContent',function(data){
-		$('.addmaps_content').hide();
-		$('.editmaps_content').hide();
-		$('.deletemaps_content').hide();
-		$('#content_holder1').show();
-		$('#content_holder').hide();
-		$('#content_holder1').html('');
-
 		var dataLen = data.length;
 
 		for(i = 0; i < dataLen; i++) {
 
 
-			$('#content_holder1').append('<div class="defaultview">'+
-					'<div class="view_img">'+
-						'<img src="'+data[i].authorImage+'">'+
+			if ($('.admin_btn')[0]) {
+				var buttons = ' <a href="/updateContent?dataId='+data[i]._id+'" class="btn btn-sm btn-dark mb-2 mt-2 content_upd" >Update</a> <button class="btn btn-sm btn-danger mb-2 mt-2 content_del" value="'+data[i]._id+'">delete</button>';
+			} else {
+				var buttons = '';
+			}
+
+			$('.web-listing-area').append('<div class="defaultview">'+
+				
+					'<div class="view_img">'+buttons+
+						'<img src="'+data[i].agent_pic+'">'+
 					'</div>'+
 					'<div class="view_info">'+
 						'<table style="width: 100%;">'+
 							'<tr>'+
-								'<th><label>이름 : </label></th>'+
-								'<td>'+data[i].authorName+'</td>'+
+								'<th><label>업체명 : </label></th>'+
+								'<td>'+data[i].company_name+'</td>'+
 							'</tr>'+
 							'<tr>'+
 								'<th><label>연락처 : </label></th>'+
-								'<td>'+data[i].authorNumber+'</td>'+
-							'</tr>'+
-							'<tr>'+
-								'<th><label>카카오톡 : </label></th>'+
-								'<td>'+data[i].authorKakao+'</td>'+
-							'</tr>'+
-							'<tr>'+
-								'<th><label>텔레그램 : </label></th>'+
-								'<td>'+data[i].authorTelegram+'</td>'+
+								'<td>'+data[i].company_phone+'</td>'+
 							'</tr>'+
 							'<tr>'+
 								'<th><label>지역 : </label></th>'+
-								'<td>'+data[i].authorAddress+'</td>'+
+								'<td>'+data[i].company_area+'</td>'+
 							'</tr>'+
 						'</table>'+
 					'</div>'+
 					'<div class="clear"></div>'+
 
-					'<button class="btn btn-dark btn-sm default_btn" value="'+data[i]._id+'">상세정보</button>'+
-				'</div>')
-
-
-			
+				'</div>');
 		}
 
 		$('.back_content').hide();
@@ -372,114 +360,28 @@ var callback = function(result,status) {
 			// alert(data[0].kakaoLink)
 			$('.kakao_link').attr('href', data[0].kakaoLink);
 			$('.telegram_link').attr('href', data[0].telegram_link);
-
 		} 
-
-
 		$('.back_content').show();
 	})
 
 
-	$('.deletemaps_content').click(function(){
+$(document).ready(function(){
+	$(document).on('click','.content_del' ,function(){
 		var dataId = $(this).val();
 		socket.emit('deleteData', {'dataId' : dataId});
+		
 	});
 
 
+})
 
-	$('.editmaps_content').click(function(){
-		var dataId = $(this).val();
-		socket.emit('modifyData', {'dataId' : dataId});
-
-	});
-
-	socket.on('returnData',function(data){
-
-		$('.updateContent_modal').show();
-		$('#editContent').val(data[0]._id)
-		$('.updateContent_modal input[name=author_name]').val(data[0].authorName);
-		$('.updateContent_modal input[name=author_number]').val(data[0].authorNumber);
-		$('.updateContent_modal input[name=author_kakao]').val(data[0].authorKakao);
-		$('.updateContent_modal input[name=author_telegram]').val(data[0].authorTelegram);
-		$('.updateContent_modal input[name=author_address]').val(data[0].authorAddress);
-		$('.updateContent_modal input[name=author_kakao_link]').val(data[0].kakaoLink);
-		$('.updateContent_modal input[name=author_telegram_link]').val(data[0].telegram_link);
-		$('#edit_content_input').html(data[0].authorContents);
-		$('#edit_content_input').next().find('.note-editable').html(data[0].authorContents);
-		$('#edit_content_input').next().find('.note-placeholder').hide();
-
-	});
-
-	$('#editContent').click(function(){
-
-		var form = new FormData($('#edit_content_form'));
-
-		var object_id  = $(this).val();
-		var authorImage = $('.updateContent_modal input[name=author_image]')[0].files[0];
-		var authorName = $('.updateContent_modal input[name=author_name]').val();
-		var authorNumber = $('.updateContent_modal input[name=author_number]').val();
-		var authorKakao = $('.updateContent_modal input[name=author_kakao]').val();
-		var authorTelegram = $('.updateContent_modal input[name=author_telegram]').val();
-		var authorAddress = $('.updateContent_modal input[name=author_address]').val();
-		var authorContents = $('#edit_content_input').val();
-		var authorKakao_link = $('.updateContent_modal input[name=author_kakao_link]').val();
-		var authorTelegram_link = $('.updateContent_modal input[name=author_telegram_link]').val();
+socket.on('return_delete',function(){
+	location.reload();
+})
 
 
-		if(authorImage) {
-			form.append('authorImage', authorImage);
-		}
-
-		if(authorName) {
-			form.append('authorName', authorName);
-		}
-
-		if(authorNumber) {
-			form.append('authorNumber', authorNumber);
-		}
-
-		if(authorKakao) {
-			form.append('authorKakao', authorKakao);
-		}
-
-		if(authorTelegram) {
-			form.append('authorTelegram', authorTelegram);
-		}
-
-		if(authorAddress) {
-			form.append('authorAddress', authorAddress);
-		}
 
 
-		if(authorContents) {
-			form.append('authorContents', authorContents);
-		}
-
-		if(authorKakao_link) {
-			form.append('kakaoLink', authorKakao_link);
-		}
-
-		if(authorTelegram_link) {
-			form.append('telegram_link', authorTelegram_link);
-		}
-
-		if(object_id) {
-			form.append('object_id', object_id);
-		}
-
-
-		$.ajax({
-			url :'/modifyData',
-			method : 'post',
-			data: form,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success:function(){
-				
-			}
-		});
-	})
 
 
 

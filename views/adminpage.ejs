@@ -7,7 +7,7 @@
 </head>
 <body>
   	<% include partials/navigation %>
-
+    <!-- <div class="clear"></div> -->
     <div class="adminContentHolder" style="padding-top: 50px;">
 
          <div class="container">
@@ -19,49 +19,97 @@
                <li class="nav-item"  style="width: 50%; text-align: center;">
                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">AddContent</a>
                </li>
+               <li class="nav-item"  style="width: 50%; text-align: center;">
+                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Add Game Method</a>
+               </li>
              </ul>
              <div class="tab-content" id="myTabContent">
-               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="height: 600px;">
+               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="height: 870px;">
                    <div class="markLocation">
                        
                        <div class="addB_icon">
                         <div class="add_form">
                             <h1>Mark Location</h1>
-                            <form action="/saveLocation" method="POST">
-                                <label>Place Name</label>
-                                <input type="text" name="placename" class="form-control">
-                                <label>Langtitude</label>
-                                <input type="text" name="langtitude" class="form-control">
-                                <label>Longtitude</label>
-                                <input type="text" name="longtitude" class="form-control">
-                                <button class="btn btn-dark mt-3">Place Location</button>
-                            </form>
+                            <% if (typeof data != 'undefined') { -%>
+                                <form action="/modifyData" method="POST" enctype="multipart/form-data">
+                                    <input type="text" hidden name="object_id" value="<%=data[0]['_id'] %>">
+                                    <label>Place Name</label>
+                                    <input type="text" name="placename" class="form-control" value="<%=data[0]['name']%>">
+                                    <label>Langtitude</label>
+                                    <input type="text" name="langtitude" class="form-control" value="<%=data[0]['langtitude']%>">
+                                    <label>Longtitude</label>
+                                    <input type="text" name="longtitude" class="form-control" value="<%=data[0]['longtitude']%>">
+                                    <label>PICTURE</label>
+                                    <input type="file" name="agent_pic" class="form-control">
+                                    <label>Name</label>
+                                    <input type="text" name="company_name" class="form-control" value="<%=data[0]['company_name']%>">
+                                    <label>Phone Number</label>
+                                    <input type="text" name="company_phone" class="form-control" value="<%=data[0]['company_phone']%>">
+                                    <label>Area</label>
+                                    <input type="text" name="company_area" class="form-control" value="<%=data[0]['company_area']%>">
+                                    <button class="btn btn-dark mt-3">Update Content</button>
+                                </form>
+
+                            <% } else { -%>
+                                <form action="/saveLocation" method="POST" enctype="multipart/form-data">
+
+                                    <label>Place Name</label>
+                                    <input type="text" name="placename" class="form-control">
+                                    <label>Langtitude</label>
+                                    <input type="text" name="langtitude" class="form-control">
+                                    <label>Longtitude</label>
+                                    <input type="text" name="longtitude" class="form-control">
+                                    <label>PICTURE</label>
+                                    <input type="file" name="agent_pic" class="form-control">
+                                    <label>Name</label>
+                                    <input type="text" name="company_name" class="form-control">
+                                    <label>Phone Number</label>
+                                    <input type="text" name="company_phone" class="form-control">
+                                    <label>Area</label>
+                                    <input type="text" name="company_area" class="form-control">
+                                    <button class="btn btn-dark mt-3">Place Location</button>
+                                </form>
+
+                            <% } -%>
                         </div> <!-- end add_form -->
                        </div> <!-- end addB_icon -->
                    </div>
 
 
                </div>
-               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height: 900px;">
+               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height: 1800px;">
                    
                    <div class="container">
                     <div class="addFormContent">
                         <h2>Add Website Content</h2>
 
-                        <div class="content_form">
-                            <label>Title</label>
-                            <input type="text" name="" class="content_title">
-                            <label>Categories</label>
-                            <select class="categ_form">
-                                <option value="event">이벤트</option>
-                                <option value="notice">공지사항</option>
-                                <option value="game">게임방법</option>
-                            </select>
-                            <label>Content</label>
-                            <textarea id="contents"></textarea>
+                        <form action="/addGameMethod" method="POST">     
+                            <div class="content_form">
+                                <label>Categories</label>
+                                <select class="categ_form" name="categ_type">
+                                    <option value="game1">블랙잭</option>
+                                    <option value="game2">바카라</option>
+                                    <option value="game3">룰렛</option>
+                                    <option value="game4">빅휠</option>
+                                    <option value="game5">다이사이</option>
+                                    <option value="game6">캐리비안스터드포커</option>
+                                    <option value="game7">카지노워</option>
+                                    <option value="game8">텍사스홀뎀</option>
+                                    <option value="game9">쓰리카드포커</option>
+                                </select>
 
-                            <button id="add_web_content">POST ARTICLE</button>
-                        </div> <!-- end content_form -->
+                                <label>게임소개</label>
+                                <textarea id="gameM-1" name="con1"></textarea>
+                                <label>게임진행</label>
+                                <textarea id="gameM-2" name="con2"></textarea>
+                                <label>게임규칙</label>
+                                <textarea id="gameM-3" name="con3"></textarea>
+
+                                <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
+                            </div> <!-- end content_form -->
+                        </form>
+
+
                     </div> <!-- end addFormContent -->
                    </div>
                </div>

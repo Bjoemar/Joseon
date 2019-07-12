@@ -33,8 +33,6 @@ app.use(session({
 }));
 
 
-
-
 // app.use(session(options))
 
 
@@ -55,6 +53,9 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 
 
+// server.listen(3000, function() {
+//   console.log('Starting server on port 5000');
+// });
 
 
 // server.listen(5000, function() {
@@ -158,7 +159,7 @@ io.on('connection',function(socket){
 		MongoClient.connect(url,{useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
-			dbo.collection("location_content").find().toArray(function(err,result){
+			dbo.collection("location").find().toArray(function(err,result){
 				if(err) throw err;
 				io.to(socketid).emit('mapDataContent',result);
 				db.close();
@@ -170,11 +171,10 @@ io.on('connection',function(socket){
 
 	socket.on('placeSearch' ,function(data){
 		socketid = socket.id;
-		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+		MongoClient.connect(url,{useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
-			console.log(data);
-			dbo.collection('location_content').find({'placeName' : data.placeName}).toArray(function(err,result){
+			dbo.collection('location').find({'company_area' : data.placeName}).toArray(function(err,result){
 				if(err) throw err;
 				io.to(socketid).emit('loadContent',result);
 				db.close();
@@ -197,12 +197,12 @@ io.on('connection',function(socket){
 
 
 	socket.on('location_search',function(data){
+		console.log(data);
 		socketid = socket.id;
 		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
-			dbo.collection('location_content').find({'authorAddress' : data.placeSearch}).toArray(function(err,result){
-				console.log(result);
+			dbo.collection('location').find({'company_area' : data.placeSearch}).toArray(function(err,result){
 				if(err) throw err;
 				io.to(socketid).emit('mapDataContent',result);
 				db.close();
@@ -233,7 +233,8 @@ io.on('connection',function(socket){
 		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
-			dbo.collection('location_content').deleteOne({"_id" : ObjectID(data.dataId)})
+			dbo.collection('location').deleteOne({"_id" : ObjectID(data.dataId)})
+			socket.emit('return_delete')
 		})
 	});
 
