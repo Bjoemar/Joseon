@@ -312,7 +312,7 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
       });
     })
 
-    // response.redirect('/admin');
+    response.redirect('/admin');
 });
 
 
