@@ -271,7 +271,7 @@ router.post('/maps', urlencodedParser ,function(req,res) {
 
 
 
-router.post('/saveLocation', urlencodedParser, function(request,response){
+router.post('/saveLocation', function(request,response){
 
     var form = new formidable.IncomingForm();
 
