@@ -370,7 +370,7 @@ router.post('/modifyData',  function(request,response){
     if (files.agent_pic.name != '') {
         var filename = uuidv4();
         var extension = path.extname(files.agent_pic.name);
-        var newpath = 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/assets/images/assets/images/' + filename + extension;
+        var newpath = 'assets/images/assets/images/' + filename + extension;
     }
    
 
@@ -447,7 +447,7 @@ router.post('/modifyData',  function(request,response){
 
   })
 
-  response.redirect('/maps');
+  // response.redirect('/maps');
 })
 
 
