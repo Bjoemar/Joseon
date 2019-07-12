@@ -1,3 +1,6 @@
+// var serverUri = 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/';
+// var socket = io(serverUri, {'transports': ['websocket', 'polling']});
+
 var socket = io();
 
 var error_id = false;

@@ -286,7 +286,7 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
       var company_area = fields.company_area;
       var filename = uuidv4();
       var extension = path.extname(files.agent_pic.name);
-      var newpath = 'assets/images/' + filename + extension;
+      var newpath = 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/assets/images/' + filename + extension;
 
       MongoClient.connect(url,function(err,db){
           if (err) throw err;
@@ -312,7 +312,7 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
       });
     })
 
-    // response.redirect('/admin');
+    response.redirect('/admin');
 });
 
 
@@ -368,7 +368,7 @@ router.post('/modifyData',  urlencodedParser , function(request,response){
     if (files.agent_pic.name != '') {
         var filename = uuidv4();
         var extension = path.extname(files.agent_pic.name);
-        var newpath = 'assets/images/' + filename + extension;
+        var newpath = 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/assets/images/assets/images/' + filename + extension;
     }
    
 

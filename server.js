@@ -7,8 +7,12 @@ var server = http.Server(app);
 var ObjectID = require('mongodb').ObjectID;
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
-var socketIO = require('socket.io');
+var socketIO = require('socket.io')
+
 var io = socketIO(server);
+
+// var io = require('socket.io')(server, {'transports': ['websocket', 'polling']});
+
 var uuidv4 = require('uuid/v4');
 var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
 var session = require('express-session');
@@ -53,12 +57,12 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 
 
-// server.listen(3000, function() {
+// server.listen(5000, function() {
 //   console.log('Starting server on port 5000');
 // });
 
 
-// server.listen(5000, function() {
+// server.listen(3000, function() {
 //   console.log('Starting server on port 5000');
 // });
 
