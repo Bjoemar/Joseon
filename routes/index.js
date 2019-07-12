@@ -296,7 +296,7 @@ router.post('/saveLocation', function(request,response){
               "langtitude" : langtitude,
               "longtitude" : longtitude,
               "name" : placeName,
-              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com'+newpath,
+              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
               "company_name" : company_name,
               "company_phone" : company_phone,
               "company_area" : company_area,
@@ -312,7 +312,7 @@ router.post('/saveLocation', function(request,response){
       });
     })
 
-    // response.redirect('/admin');
+    response.redirect('/admin');
 });
 
 
@@ -346,7 +346,7 @@ router.get('/updateContent',function(req,res){
 
 
 
-router.post('/modifyData',  urlencodedParser , function(request,response){
+router.post('/modifyData',  function(request,response){
 
 
 
@@ -413,7 +413,7 @@ router.post('/modifyData',  urlencodedParser , function(request,response){
               {$set:{ "langtitude" : langtitude,
                 "longtitude" : longtitude,
                 "name" : placeName,
-                "agent_pic" : newpath,
+                "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
                 "company_name" : company_name,
                 "company_phone" : company_phone,
                 "company_area" : company_area,}}
