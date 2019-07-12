@@ -10,7 +10,7 @@ var formidable = require('formidable');
 var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
 var bodyParser = require('body-parser');
 var useragent = require('express-useragent');
-var urlencodedParser = bodyParser.urlencoded({extended : true});
+var urlencodedParser = bodyParser.urlencoded({extended : false});
 var dt = dateTime.create();
 var ObjectID = require('mongodb').ObjectID;
 
@@ -307,8 +307,8 @@ router.post('/saveLocation', urlencodedParser, function(request,response){
 
       fs.rename(agent_pic,newpath,function(err){
         if (err) throw err;
-        response.write('FILES UPLOAD AND MOVED');
-        response.end();
+        // response.write('FILES UPLOAD AND MOVED');
+        // response.end();
       });
     })
 
