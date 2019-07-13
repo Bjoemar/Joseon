@@ -399,7 +399,7 @@ router.post('/modifyData',  function(request,response){
             dbo.collection('location').find({'_id' : ObjectID(object_id)}).toArray(function(err,result){
               if(err) throw err;
               console.log(result);
-              var path = './'+result[0]['agent_pic'];
+              var path = result[0]['agent_pic'];
 
               try {
                 fs.unlinkSync(path)
