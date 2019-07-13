@@ -296,7 +296,7 @@ router.post('/saveLocation', function(request,response){
               "langtitude" : langtitude,
               "longtitude" : longtitude,
               "name" : placeName,
-              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
+              "agent_pic" : newpath,
               "company_name" : company_name,
               "company_phone" : company_phone,
               "company_area" : company_area,
@@ -313,7 +313,7 @@ router.post('/saveLocation', function(request,response){
       });
     })
 
-    // response.redirect('/admin');
+    response.redirect('/admin');
    
 });
 
@@ -364,15 +364,10 @@ router.post('/modifyData',  function(request,response){
     var company_name = fields.company_name;
     var company_phone = fields.company_phone;
     var company_area = fields.company_area;
+    var filename = uuidv4();
+    var extension = path.extname(files.agent_pic.name);
+    var newpath = 'assets/images/' + filename + extension;
 
-    console.log(files.agent_pic.name)
-
-    if (files.agent_pic.name != '') {
-        var filename = uuidv4();
-        var extension = path.extname(files.agent_pic.name);
-        var newpath = 'assets/images/assets/images/' + filename + extension;
-    }
-   
 
 
 
@@ -382,27 +377,18 @@ router.post('/modifyData',  function(request,response){
         var dbo = db.db('zigbang');
 
 
-        // var myobj = {
-        //     "langtitude" : langtitude,
-        //     "longtitude" : longtitude,
-        //     "name" : placeName,
-        //     "agent_pic" : newpath,
-        //     "company_name" : company_name,
-        //     "company_phone" : company_phone,
-        //     "company_area" : company_area,
-
-        // }
 
 
         if (files.agent_pic.name != '') {
 
             dbo.collection('location').find({'_id' : ObjectID(object_id)}).toArray(function(err,result){
+
               if(err) throw err;
-              console.log(result);
               var path = './'+result[0]['agent_pic'];
 
               try {
                 fs.unlinkSync(path)
+                dbo.collection('location').deleteOne({"_id" : ObjectID(object_id)})
                 //file removed
               } catch(err) {
                 console.error(err)
@@ -411,16 +397,26 @@ router.post('/modifyData',  function(request,response){
               db.close();
             })
 
-            dbo.collection('location').updateOne({'_id': ObjectID(object_id)},
-              {$set:{ "langtitude" : langtitude,
+
+
+            var myobj = {
+                "langtitude" : langtitude,
                 "longtitude" : longtitude,
                 "name" : placeName,
-                "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
+                "agent_pic" : newpath,
                 "company_name" : company_name,
                 "company_phone" : company_phone,
-                "company_area" : company_area,}}
-                );
+                "company_area" : company_area,
+            }
 
+            dbo.collection("location").insertOne(myobj);
+            
+            fs.rename(agent_pic,newpath,function(err){
+              if (err) throw err;
+              // response.write('FILES UPLOAD AND MOVED');
+              // response.end();
+
+            });
 
 
 
@@ -436,14 +432,7 @@ router.post('/modifyData',  function(request,response){
         }
    
     })
-    
-    if (files.agent_pic.name != '') { 
-       fs.rename(agent_pic,'./'newpath,function(err){
-         if (err) throw err;
-         response.write('FILES UPLOAD AND MOVED');
-         response.end();
-       }); 
-    }
+
 
   })
 
