@@ -446,13 +446,13 @@ router.post('/modifyData',  function(request,response){
    
     })
     
-    if (files.agent_pic.name != '') { 
-       fs.rename('http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com'+agent_pic,newpath,function(err){
-         if (err) throw err;
-         response.write('FILES UPLOAD AND MOVED');
-         response.end();
-       }); 
-    }
+    // if (files.agent_pic.name != '') { 
+    //    fs.rename('http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com'+agent_pic,newpath,function(err){
+    //      if (err) throw err;
+    //      response.write('FILES UPLOAD AND MOVED');
+    //      response.end();
+    //    }); 
+    // }
 
   })
 
