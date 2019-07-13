@@ -307,13 +307,14 @@ router.post('/saveLocation', function(request,response){
 
       fs.rename(agent_pic,newpath,function(err){
         if (err) throw err;
-        response.write('FILES UPLOAD AND MOVED');
+        response.redirect('/admin');
+        // response.write('FILES UPLOAD AND MOVED');
         response.end();
 
       });
     })
 
-    response.redirect('/admin');
+    
    
 });
 
