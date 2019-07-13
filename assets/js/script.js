@@ -184,3 +184,25 @@ $('#gameM-3').summernote({
 		disableResizeEditor: true,
 	});
 
+
+
+var click_nav_item = false;
+
+$('.mobile_game_method').click(function(){
+	if (click_nav_item) {
+
+	   click_nav_item = false;
+	   $('.nav_link_content').animate({
+	       'height' : '0'
+	     },500);
+
+	 } else {
+	   click_nav_item = true;
+	   $('.nav_link_content').animate({
+	       'height' : '310px'
+	     },500);
+	
+	 }
+})
+
+

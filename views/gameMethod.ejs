@@ -31,7 +31,7 @@
                       <% if (typeof userLevel != 'undefined'){ %>
                         <% if (userLevel == 'admin') { -%>
                             <a href="/modify_method?obj_id=<%= data[0]['_id']%>" class="g-navs btn-dark" style="text-decoration: none; color: lightgreen; font-weight: 900; width: 70px; text-align: center; background: #333;"><i class="fas fa-sync-alt"></i></a/>
-                            <a href="/delete_method?obj_id=<%= data[0]['_id']%>" class="g-navs btn-dark" style="text-decoration: none; color: red; font-weight: 900; width: 70px; text-align: center; background: #333;"><i class="fas fa-trash-alt"></i></a/>
+                            <a href="/modify_method?obj_id=<%= data[0]['_id']%>" class="g-navs btn-dark" style="text-decoration: none; color: red; font-weight: 900; width: 70px; text-align: center; background: #333;"><i class="fas fa-trash-alt"></i></a/>
                          <% } -%> 
                       <% } %>
                     <div class="clear"></div>

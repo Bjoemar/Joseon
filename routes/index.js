@@ -449,8 +449,16 @@ router.get('/gameMethod',function(request,response){
                   dbo.collection('method').find({'cat' : 'game1'}).toArray(function(err,result){
 
                     if(err) throw err;
-                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
-                    db.close();
+
+                    if(request.useragent.isMobile) {
+                         response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                        db.close();
+                    } else {
+                         response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                        db.close();
+                    }
+
+                   
                   })
             })
           
@@ -461,8 +469,18 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game2' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
-                db.close();
+
+                if(request.useragent.isMobile) {
+                    
+                    response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
+                    db.close();
+                } else {
+                    
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
+                    db.close();
+                }
+
+
               })
         })       
     } else if(request.query.type == 'game3'){
@@ -472,8 +490,21 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game3'}).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                    
+                   response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
+                    b.close();
+                } else {
+                    
+                   response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
+                    db.close();
+                }
+
+
+
+                
               })
         })
     } else if(request.query.type == 'game4'){
@@ -483,8 +514,19 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game4' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                    
+                   response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
+                   db.close();
+                } else {
+                    
+                  response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
+                  db.close();
+                }
+
+                
               })
         })
     } else if(request.query.type == 'game5'){
@@ -494,8 +536,21 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game5' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                    
+                  
+                  response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
+                  db.close();
+                } else {
+                    
+                  
+                  response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
+                  db.close();
+                }
+
+
               })
         })
     } else if(request.query.type == 'game6'){
@@ -505,8 +560,21 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game6' }).toArray(function(err,result){
                 if(err) throw err;
+
+                if(request.useragent.isMobile) {
+                    
+                  
+                   
+                response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
+                db.close();
+                } else {
+                    
+      
                 response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
                 db.close();
+                }
+
+
               })
         })
     } else if(request.query.type == 'game7'){
@@ -516,8 +584,20 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game7' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                    response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
+                    db.close();
+                } else {
+                    
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
+                    db.close();
+                }
+
+
+
+             
               })
         })
     } else if(request.query.type == 'game8'){
@@ -527,8 +607,18 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game8' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
-                db.close();
+
+                if(request.useragent.isMobile) {
+                    response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
+                    db.close();
+                } else {
+                    
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
+                    db.close();
+                }
+
+
+                
               })
         })
     } else if(request.query.type == 'game9'){
@@ -538,8 +628,20 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game9' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                   
+                   response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
+                   db.close();
+                } else {
+                    
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
+                    db.close();
+                }
+
+
+
               })
         })
     } else if(request.query.type == 'game1'){
@@ -549,10 +651,20 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game1' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
-                db.close();
+
+
+                if(request.useragent.isMobile) {
+                   
+                   response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                    db.close();
+                } else { 
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                    db.close();
+                }
+             
               })
         })
+
     } else {
         response.render ('./gameMethod');    
     }
@@ -629,7 +741,7 @@ router.get('/updateContent',function(req,res){
 
             var dbo = db.db('zigbang');
 
-            dbo.collection('location').deleteOne({"_id" : ObjectID(obj_id)})
+            dbo.collection("method").deleteOne({"_id" : ObjectID(obj_id)})
 
             var myobj = {
                 "cat" : cat,
@@ -645,17 +757,19 @@ router.get('/updateContent',function(req,res){
       });
 
       response.redirect('/admin');
-  })
+  });
 
 
-  router.post('/modify_method', urlencodedParser , function(request,response){
+
+
+  router.post('/delete_method', urlencodedParser , function(request,response){
 
     var place_search = req.body.obj_id;
 
     MongoClient.connect(url,function(err,db){
         if (err) throw err;
         var dbo = db.db('zigbang');
-        dbo.collection('location').deleteOne({"_id" : ObjectID(obj_id)})
+        dbo.collection('method').deleteOne({"_id" : ObjectID(obj_id)})
 
     });
 
@@ -665,5 +779,24 @@ router.get('/updateContent',function(req,res){
 
 
 
+router.get('/modify_method' ,function(request,response){
+
+    var obj_id = request.query.obj_id;
+
+    console.log(request);
+
+
+    MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+      if (err) throw err;
+      var dbo = db.db('zigbang');
+
+      dbo.collection('method').find({"_id" : ObjectID(obj_id)}).toArray(function(err,result){
+          if(err) throw err;
+          response.render('./edit_gameMethod' , {userLevel : request.session.userLevel , 'data' : result});
+          db.close();
+      })
+})
+
+})
 
 module.exports = router;
