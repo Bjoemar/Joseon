@@ -296,7 +296,7 @@ router.post('/saveLocation', function(request,response){
               "langtitude" : langtitude,
               "longtitude" : longtitude,
               "name" : placeName,
-              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
+              "agent_pic" : newpath,
               "company_name" : company_name,
               "company_phone" : company_phone,
               "company_area" : company_area,
@@ -411,15 +411,24 @@ router.post('/modifyData',  function(request,response){
               db.close();
             })
 
-            dbo.collection('location').updateOne({'_id': ObjectID(object_id)},
-              {$set:{ "langtitude" : langtitude,
-                "longtitude" : longtitude,
-                "name" : placeName,
-                "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
-                "company_name" : company_name,
-                "company_phone" : company_phone,
-                "company_area" : company_area,}}
-                );
+            dbo.collection('location').deleteOne({"_id" : ObjectID(object_id)})
+
+           MongoClient.connect(url,function(err,db){
+               if (err) throw err;
+               var dbo = db.db('zigbang');
+
+               var myobj = {
+                   "langtitude" : langtitude,
+                   "longtitude" : longtitude,
+                   "name" : placeName,
+                   "agent_pic" : newpath,
+                   "company_name" : company_name,
+                   "company_phone" : company_phone,
+                   "company_area" : company_area,
+               }
+
+               dbo.collection("location").insertOne(myobj);
+           });
 
 
 
