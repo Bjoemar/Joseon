@@ -296,7 +296,7 @@ router.post('/saveLocation', function(request,response){
               "langtitude" : langtitude,
               "longtitude" : longtitude,
               "name" : placeName,
-              "agent_pic" : newpath,
+              "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
               "company_name" : company_name,
               "company_phone" : company_phone,
               "company_area" : company_area,
@@ -399,7 +399,7 @@ router.post('/modifyData',  function(request,response){
             dbo.collection('location').find({'_id' : ObjectID(object_id)}).toArray(function(err,result){
               if(err) throw err;
               console.log(result);
-              var path = result[0]['agent_pic'];
+              var path = './'+result[0]['agent_pic'];
 
               try {
                 fs.unlinkSync(path)
@@ -411,24 +411,15 @@ router.post('/modifyData',  function(request,response){
               db.close();
             })
 
-            dbo.collection('location').deleteOne({"_id" : ObjectID(object_id)})
-
-           MongoClient.connect(url,function(err,db){
-               if (err) throw err;
-               var dbo = db.db('zigbang');
-
-               var myobj = {
-                   "langtitude" : langtitude,
-                   "longtitude" : longtitude,
-                   "name" : placeName,
-                   "agent_pic" : newpath,
-                   "company_name" : company_name,
-                   "company_phone" : company_phone,
-                   "company_area" : company_area,
-               }
-
-               dbo.collection("location").insertOne(myobj);
-           });
+            dbo.collection('location').updateOne({'_id': ObjectID(object_id)},
+              {$set:{ "langtitude" : langtitude,
+                "longtitude" : longtitude,
+                "name" : placeName,
+                "agent_pic" : 'http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com/'+newpath,
+                "company_name" : company_name,
+                "company_phone" : company_phone,
+                "company_area" : company_area,}}
+                );
 
 
 
@@ -446,13 +437,13 @@ router.post('/modifyData',  function(request,response){
    
     })
     
-    // if (files.agent_pic.name != '') { 
-    //    fs.rename('http://joseon-joseon.b9ad.pro-us-east-1.openshiftapps.com'+agent_pic,newpath,function(err){
-    //      if (err) throw err;
-    //      response.write('FILES UPLOAD AND MOVED');
-    //      response.end();
-    //    }); 
-    // }
+    if (files.agent_pic.name != '') { 
+       fs.rename(agent_pic,newpath,function(err){
+         if (err) throw err;
+         response.write('FILES UPLOAD AND MOVED');
+         response.end();
+       }); 
+    }
 
   })
 
