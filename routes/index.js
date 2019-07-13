@@ -449,7 +449,7 @@ router.get('/gameMethod',function(request,response){
                   dbo.collection('method').find({'cat' : 'game1'}).toArray(function(err,result){
 
                     if(err) throw err;
-                    response.render('./gameMethod' , {'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                    response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
                     db.close();
                   })
             })
@@ -461,7 +461,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game2' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
                 db.close();
               })
         })       
@@ -483,7 +483,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game4' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
                 db.close();
               })
         })
@@ -494,7 +494,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game5' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
                 db.close();
               })
         })
@@ -505,7 +505,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game6' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
                 db.close();
               })
         })
@@ -516,7 +516,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game7' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
                 db.close();
               })
         })
@@ -527,7 +527,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game8' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
                 db.close();
               })
         })
@@ -538,7 +538,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game9' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
                 db.close();
               })
         })
@@ -549,7 +549,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game1' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
                 db.close();
               })
         })
