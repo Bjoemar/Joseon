@@ -449,7 +449,7 @@ router.get('/gameMethod',function(request,response){
                   dbo.collection('method').find({'cat' : 'game1'}).toArray(function(err,result){
 
                     if(err) throw err;
-                    response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result , 'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
                     db.close();
                   })
             })
@@ -461,7 +461,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game2' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_3.gif'});
                 db.close();
               })
         })       
@@ -472,7 +472,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game3'}).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
                 db.close();
               })
         })
@@ -483,7 +483,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game4' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_5.gif'});
                 db.close();
               })
         })
@@ -494,7 +494,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game5' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_6.gif'});
                 db.close();
               })
         })
@@ -505,7 +505,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game6' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_7.gif'});
                 db.close();
               })
         })
@@ -516,7 +516,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game7' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_8.gif'});
                 db.close();
               })
         })
@@ -527,7 +527,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game8' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_9.gif'});
                 db.close();
               })
         })
@@ -538,7 +538,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game9' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_10.gif'});
                 db.close();
               })
         })
@@ -549,7 +549,7 @@ router.get('/gameMethod',function(request,response){
 
               dbo.collection('method').find({'cat' : 'game1' }).toArray(function(err,result){
                 if(err) throw err;
-                response.render('./gameMethod' , {userLevel : req.session.userLevel ,'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
+                response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_2.gif'});
                 db.close();
               })
         })
@@ -588,6 +588,7 @@ router.get('/updateContent',function(req,res){
             var con1 = fields.con1;
             var con2 = fields.con2;
             var con3 = fields.con3;
+            var links = fields.links;
 
             MongoClient.connect(url,function(err,db){
                 if (err) throw err;
@@ -599,6 +600,7 @@ router.get('/updateContent',function(req,res){
                     "con1" : con1,
                     "con2" : con2,
                     "con3" : con3,
+                    "video" : links,
                 }
 
                 dbo.collection("method").insertOne(myobj);
@@ -607,7 +609,59 @@ router.get('/updateContent',function(req,res){
           })
 
           response.redirect('/admin');
-    })
+    });
+
+  router.post('/modify_method',function(request,response){
+
+      var form = new formidable.IncomingForm();
+
+      form.parse(request , function(err,fields,files){
+
+        var cat = fields.categ_type;
+        var con1 = fields.con1;
+        var con2 = fields.con2;
+        var con3 = fields.con3;
+        var links = fields.links;
+        var obj_id = fields.object_id;
+
+        MongoClient.connect(url,function(err,db){
+            if (err) throw err;
+
+            var dbo = db.db('zigbang');
+
+            dbo.collection('location').deleteOne({"_id" : ObjectID(obj_id)})
+
+            var myobj = {
+                "cat" : cat,
+                "con1" : con1,
+                "con2" : con2,
+                "con3" : con3,
+                "video" : links,
+            }
+
+            dbo.collection("method").insertOne(myobj);
+        });
+
+      });
+
+      response.redirect('/admin');
+  })
+
+
+  router.post('/modify_method', urlencodedParser , function(request,response){
+
+    var place_search = req.body.obj_id;
+
+    MongoClient.connect(url,function(err,db){
+        if (err) throw err;
+        var dbo = db.db('zigbang');
+        dbo.collection('location').deleteOne({"_id" : ObjectID(obj_id)})
+
+    });
+
+
+      response.redirect('/admin');
+  })
 
 
 

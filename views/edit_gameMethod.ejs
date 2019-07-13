@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ADMINISTRATOR</title>
+	 <% include partials/header %>
+
+</head>
+<body>
+  	<% include partials/navigation %>
+    <!-- <div class="clear"></div> -->
+    <div class="adminContentHolder" style="padding-top: 50px;">
+        <div class="addFormContent">
+            <h2>Add Website Content</h2>
+
+            <form action="/modify_method" method="POST">     
+                <div class="content_form">
+                    <input type="text" name="object_id" hidden>
+                    <label>Categories</label>
+                    <select class="categ_form" name="categ_type">
+                        <option value="game1">블랙잭</option>
+                        <option value="game2">바카라</option>
+                        <option value="game3">룰렛</option>
+                        <option value="game4">빅휠</option>
+                        <option value="game5">다이사이</option>
+                        <option value="game6">캐리비안스터드포커</option>
+                        <option value="game7">카지노워</option>
+                        <option value="game8">텍사스홀뎀</option>
+                        <option value="game9">쓰리카드포커</option>
+                    </select>
+                    <label>Video</label>
+                    <input type="text" name="links" class="form-control" placeholder="youtube links">
+
+                    <label>게임소개</label>
+                    <textarea id="gameM-1" name="con1"></textarea>
+                    <label>게임진행</label>
+                    <textarea id="gameM-2" name="con2"></textarea>
+                    <label>게임규칙</label>
+                    <textarea id="gameM-3" name="con3"></textarea>
+
+                    <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
+                </div> <!-- end content_form -->
+            </form>
+
+
+        </div> <!-- end addFormContent -->
+    </div>
+
+
+  	<% include partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

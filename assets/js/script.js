@@ -153,6 +153,15 @@ $('.g-navs-rules').click(function(){
 })
 
 
+
+$('.g-navs-video').click(function(){
+	$('.g-navs').removeClass('g-active');
+	$(this).addClass('g-active')
+	$('.g-navs-content').hide();
+	$('.g-video').show();
+})
+
+
 $('#gameM-1').summernote({
 	placeholder: 'Start Here ..',
 	height: 300,
