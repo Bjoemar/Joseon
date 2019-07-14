@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ADMINISTRATOR</title>
+	 <% include partials/header %>
+
+</head>
+<body>
+  	<% include partials/navigation %>
+    <!-- <div class="clear"></div> -->
+    <div class="adminContentHolder" style="padding-top: 50px;">
+
+            <div class="container">
+             <div class="addFormContent">
+                 <h2>Add Website Content</h2>
+
+                 <form action="/updateContent" method="POST">     
+                     <div class="content_form">
+                        <% if (typeof result != 'undefined') { -%>
+                                
+                            <% var resLen = result.length;
+                                if (resLen > 0) { %>
+                                    <input type="text" name="content_id" hidden value="<%= result[0]['content_id'] %>">
+                                    <label>Title</label>
+                                    <input type="text" name="title" class="form-control" value="<%= result[0]['title'] %>">
+                                    <label>Categories</label>
+                                    <select class="categ_form" name="type">
+                                        <option value="<%= result[0]['type'] %>">이벤트</option>
+                                        <!-- <option value="notice">공지사항</option> -->
+                                    </select>
+                                    <label>게임소개</label>
+                                    <textarea id="content_input" name="content"><%= result[0]['content'] %></textarea>
+                                        
+                                    <%- result[0]['content']%>
+                            
+                                <% } -%>
+                        <% } -%>
+
+
+                       
+                         <button class="btn btn-dark mt-3" style="width: 100%;">Update ARTICLE</button>
+                     </div> <!-- end content_form -->
+                 </form>
+
+
+             </div> <!-- end addFormContent -->
+            </div>
+    </div>
+
+
+  	<% include partials/footer %>
+</body>
+
+<script type="text/javascript" src="./assets/js/websocket.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script>
+<script type="text/javascript" src="./assets/js/emailValidate.js"></script>
+</html>

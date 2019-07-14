@@ -4,6 +4,8 @@
 
 body {
 	min-width: 1200px;
+	max-width: 1920px;
+	margin: auto;
 }
 .note-image-popover{
   display:none!important
@@ -158,7 +160,7 @@ nav li span {
 	width: 17.8%;
 	float: left;
 	margin: 1.1%;
-	height: 400px;
+	height: 450px;
 	overflow-y: scroll;
 }
 
@@ -1134,4 +1136,13 @@ footer label {
 	background: #ccc;
 	border-bottom: 5px solid #aaa;
 
+}
+
+.home_widget {
+	position: absolute;
+	top: 30%;
+	left: 0;
+	z-index: 50;
+	background: #ffa409;
+	border: none;
 }

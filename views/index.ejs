@@ -5,8 +5,9 @@
 	 <% include partials/header %>
 </head>
 <body>
-  	<% include partials/navigation %>
 
+  	<% include partials/navigation %>
+    <button class="home_widget"><i class="fas fa-cog"></i></button>
   	<div class="home_banner">
   		<div class="inner_banner_content">
   			<div class="inner_banner">
@@ -24,7 +25,16 @@
 
   	<div class="intro_holder">
   		<div class="intro_col">
-  			<img src="assets/images/banner_agent_register.jpg">
+  		  
+          <% if (img_res != 'undefined') { -%>
+
+
+              <img src="<%= img_res[0]['image1'] %>" style="height: 400px;">
+
+              
+          <% } else { -%>
+              <img src="assets/images/banner_agent_register.jpg">
+          <% } -%>
   		</div>
   		<div class="intro_col">
   			<div class="intro_col_header">
@@ -78,13 +88,34 @@
               <label>프리미엄 업체</label>
             </div>
             <div class="home-image-holder">
-              <img src="assets/images/banner_agent_register.jpg" style="height: 400px;">
+              <% if (img_res != 'undefined' ) { -%>
+
+
+                  <img src="<%= img_res[0]['image2'] %>" style="height: 400px;">
+
+                   
+                  
+              <% } else { -%>
+                  <img src="assets/images/11.gif" style="height: 400px;">
+              <% } -%>
+          
             </div>
           </div>
 
 
       <div class="intro_col">
-        <img src="assets/images/banner_agent_register.jpg">
+
+        <% if (img_res  != 'undefined') { -%>
+
+
+            <img src="<%= img_res[0]['image3'] %>" style="height: 400px;">
+
+             
+            
+        <% } else { -%>
+            <img src="assets/images/banner_agent_register.jpg">
+        <% } -%>
+       
       </div>
   	</div> <!-- end intro holder -->
   	

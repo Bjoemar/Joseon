@@ -206,3 +206,6 @@ $('.mobile_game_method').click(function(){
 })
 
 
+$('.home_widget').click(function(){
+	window.open("//localhost:5000/openWidget", "_blank", "toolbar=yes,scrollbars=no,resizable=yes,width=1300,height=500");
+})

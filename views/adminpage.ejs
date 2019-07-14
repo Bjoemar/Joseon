@@ -17,10 +17,10 @@
                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mark Location</a>
                </li>
                <li class="nav-item"  style="width: 50%; text-align: center;">
-                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">AddContent</a>
+                 <a class="nav-link" id="web_content-tab" data-toggle="tab" href="#web_content" role="tab" aria-controls="web_content" aria-selected="false">AddContent</a>
                </li>
                <li class="nav-item"  style="width: 50%; text-align: center;">
-                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Add Game Method</a>
+                 <a class="nav-link" id="game_method-tab" data-toggle="tab" href="#game_method" role="tab" aria-controls="game_method" aria-selected="false">Add Game Method</a>
                </li>
              </ul>
              <div class="tab-content" id="myTabContent">
@@ -77,7 +77,7 @@
 
 
                </div>
-               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height: 1800px;">
+               <div class="tab-pane fade" id="game_method" role="tabpanel" aria-labelledby="game_method-tab" style="height: 1800px;">
                    
                    <div class="container">
                     <div class="addFormContent">
@@ -107,6 +107,32 @@
                                 <label>게임규칙</label>
                                 <textarea id="gameM-3" name="con3"></textarea>
 
+                                <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
+                            </div> <!-- end content_form -->
+                        </form>
+
+
+                    </div> <!-- end addFormContent -->
+                   </div>
+               </div>
+
+               <div class="tab-pane fade" id="web_content" role="tabpanel" aria-labelledby="web_content-tab" style="height: 1800px;">
+                   
+                   <div class="container">
+                    <div class="addFormContent">
+                        <h2>Add Website Content</h2>
+
+                        <form action="/contentUpload" method="POST">     
+                            <div class="content_form">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control">
+                                <label>Categories</label>
+                                <select class="categ_form" name="type">
+                                    <option value="event">이벤트</option>
+                                    <option value="notice">공지사항</option>
+                                </select>
+                                <label>게임소개</label>
+                                <textarea id="content_input" name="content"></textarea>
                                 <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
                             </div> <!-- end content_form -->
                         </form>

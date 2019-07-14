@@ -24,24 +24,26 @@ router.get('/', (req, res) => {
         MongoClient.connect(url,function(err,db){
             var dbo = db.db('zigbang');
             dbo.collection("web_content").find().sort({ _id: -1 }).toArray(function(err,result){
+                dbo.collection("widgetImage").find().sort({ _id: -1 }).toArray(function(err,image){
+                  console.log(image)
+                    if(req.session != null) {
+                      if(req.useragent.isMobile) {
+                          res.render('./mobile_index' , {img_res : image , userLevel : req.session.userLevel , result : result });
+                      } else {
+                         res.render('./index', {img_res : image , userLevel : req.session.userLevel , result : result });
+                      }
+                      
+                        
+                    } else {
+                       if(req.useragent.isMobile) {
+                           res.render('./mobile_index' , {img_res : image , result : result});
+                       } else {
+                          res.render('./index' , {img_res : image , result : result});
+                       }
+                       
+                    }
 
-                if(req.session != null) {
-                  if(req.useragent.isMobile) {
-                      res.render('./mobile_index' , {userLevel : req.session.userLevel , result : result });
-                  } else {
-                     res.render('./index', {userLevel : req.session.userLevel , result : result });
-                  }
-                  
-                    
-                } else {
-                   if(req.useragent.isMobile) {
-                       res.render('./mobile_index' , {result : result});
-                   } else {
-                      res.render('./index' , {result : result});
-                   }
-                   
-                }
-
+                })
             });
         });
 
@@ -177,13 +179,14 @@ router.get('/admin', (req, res) => {
 
 
 
-router.post('/contentUpload' , urlencodedParser , function(request,response){
+router.post('/contentUpload' , function(request,response){
 
     var form = new formidable.IncomingForm();
     form.parse(request,function(err,fields,files){
+      // console.log(fields)
       var title = fields.title;
       var type = fields.type;
-      var content = fields.contents;
+      var content = fields.content;
       var content_id = uuidv4();
 
       MongoClient.connect(url,function(err,db){
@@ -198,12 +201,15 @@ router.post('/contentUpload' , urlencodedParser , function(request,response){
           "content_id" : content_id,
           "date" : nowDate,
         };
+
+        console.log(contentObj)
         
         dbo.collection('web_content').insertOne(contentObj);
       });
     });
-
     response.end();
+    response.redirect('./admin');
+
 
 });
 
@@ -419,9 +425,9 @@ router.post('/modifyData',  function(request,response){
 
             });
 
-
-
         } else {
+
+
             dbo.collection('location').updateOne({'_id': ObjectID(object_id)},
               {$set:{ "langtitude" : langtitude,
                 "longtitude" : longtitude,
@@ -765,7 +771,7 @@ router.get('/updateContent',function(req,res){
 
   router.post('/delete_method', urlencodedParser , function(request,response){
 
-    var place_search = req.body.obj_id;
+    var place_search = request.query.obj_id;
 
     MongoClient.connect(url,function(err,db){
         if (err) throw err;
@@ -796,8 +802,256 @@ router.get('/modify_method' ,function(request,response){
           response.render('./edit_gameMethod' , {userLevel : request.session.userLevel , 'data' : result});
           db.close();
       })
-})
+  })
+
+
 
 })
+
+
+
+
+router.get('/deleteHomeContent',function(req,res){
+
+  var article_id = req.query.article_uid;
+  var type = req.query.type;
+
+  MongoClient.connect(url,function(err,db){
+    var dbo = db.db('zigbang');
+    var query = {
+      'content_id' : article_id,
+      'type' : type,
+    }
+
+    dbo.collection('web_content').deleteOne(query)
+
+  })
+
+  res.redirect('/admin');
+
+
+})
+
+
+router.get('/updateHomeContent',function(req,res){
+  var article_id = req.query.article_uid;
+  var type = req.query.type;
+
+  MongoClient.connect(url,function(err,db){
+    var dbo = db.db('zigbang');
+    var query = {
+      'content_id' : article_id,
+      'type' : type,
+    }
+
+     dbo.collection('web_content').find(query).toArray(function(err,result){
+
+         if(result.length > 0) {
+
+           if(req.session.userLevel) {
+               if(req.useragent.isMobile) {
+                   res.redirect('/' , {userLevel : req.session.userLevel});
+               } else {
+                   res.render('./edit_webContent' ,{'result' : result , userLevel : req.session.userLevel});
+               }
+
+           } 
+
+   } else {
+       
+                 res.redirect('/' , {userLevel : req.session.userLevel});
+      
+         
+         }
+
+     })
+
+  })
+})
+
+
+
+router.post('/updateContent' , function(request,response){
+
+    var form = new formidable.IncomingForm();
+    form.parse(request,function(err,fields,files){
+      var title = fields.title;
+      var type = fields.type;
+      var content = fields.content;
+      var content_id = fields.content_id;
+
+      MongoClient.connect(url,function(err,db){
+        if(err) throw err;
+        // var nowDate = dt.format('Y-m-d');
+        var dbo = db.db('zigbang');
+
+        // var contentObj = {
+        //   "title" : title,
+        //   "type" : type,
+        //   "content" : content,
+        // };
+
+        dbo.collection('web_content').updateOne({'content_id' : content_id,'type' : type,},
+          {$set: { "title" : title,
+                   "content" : content,
+          }}
+
+      );
+          
+    });
+
+    response.end();
+    response.redirect('./admin');
+
+
+});
+
+
+
+});
+
+
+router.get('/openWidget',function(req,res){
+
+    MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+      if (err) throw err;
+      var dbo = db.db('zigbang');
+      dbo.collection('widgetImage').find().toArray(function(err,result){
+        if(err) throw err;
+        res.render('./image_widget' , {'data' : result});
+        db.close();
+      })
+    })
+    
+})
+
+router.post('/saveWid_image',function(req,res){
+
+  var form = new formidable.IncomingForm();
+
+  form.parse(req , function(err,fields,files){
+
+    var img1 = files.img1.path;
+    var img2 = files.img2.path;
+    var img3 = files.img3.path;
+    var link1 = fields.link1;
+    var link2 = fields.link2;
+    var link3 = fields.link3;
+
+    var filename1 = uuidv4();
+    var extension1 = path.extname(files.img1.name);
+    var newpath1 = 'assets/images/' + filename1 + extension1;
+
+
+    var filename2 = uuidv4();
+    var extension2 = path.extname(files.img2.name);
+    var newpath2 = 'assets/images/' + filename2 + extension2;
+
+
+    var filename3 = uuidv4();
+    var extension3 = path.extname(files.img3.name);
+    var newpath3 = 'assets/images/' + filename3 + extension3;
+
+    MongoClient.connect(url,function(err,db){
+        if (err) throw err;
+        var dbo = db.db('zigbang');
+
+        var img1 = {
+           'image1' : newpath1,
+           'num' : '1',
+           'link1' : link1,
+           'image2' : newpath2,
+           'num' : '2',
+           'link2' : link2,
+           'image3' : newpath3,
+           'num' : '3',
+           'link3' : link3,
+        }
+
+
+
+    
+          dbo.collection('widgetImage').find().toArray(function(err,result){
+            if (result > 0) {
+
+              if (files.img1.name) {
+              
+               dbo.collection('widgetImage').updateOne({'num': '1'},
+                    {$set:{ "image1" : newpath1,
+                      "link1" : link1,}}
+                      );
+              }
+
+              if (files.img2.name) {
+                
+                dbo.collection('widgetImage').updateOne({'num': '1'},
+                    {$set:{ "image2" : newpath2,
+                      "link2" : link2,}}
+                      );
+              }
+
+              if (files.img3.name) {
+              
+                dbo.collection('widgetImage').updateOne({'num': '1'},
+                  {$set:{ "image3" : newpath3,
+                    "link3" : link3,}}
+                    );
+              }
+              
+            } else {
+              console.log(img1)
+              dbo.collection('widgetImage').insertOne(img1);
+            }
+    
+        })
+
+
+
+        
+    });
+
+
+    if (files.img1.name != '') {
+      
+        fs.rename(img1,newpath1,function(err){
+          if (err) throw err;
+      
+        });
+    }
+
+
+    if (files.img2.name != '') {
+      
+     
+       fs.rename(img2,newpath2,function(err){
+         if (err) throw err;
+       
+
+       });
+    }
+
+
+    if (files.img3.name != '') {
+
+      fs.rename(img3,newpath3,function(err){
+        if (err) throw err;
+       
+
+      });
+    }
+
+
+
+
+    setTimeout(function(){
+
+      res.redirect('/openWidget');
+      // response.write('FILES UPLOAD AND MOVED');
+      res.end();
+    },2000);
+  })
+})
+
+
 
 module.exports = router;
