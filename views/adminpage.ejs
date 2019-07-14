@@ -11,16 +11,16 @@
     <div class="adminContentHolder" style="padding-top: 50px;">
 
          <div class="container">
-            <h2>Administrator</h2>       
+            <h2>관라자 페이지</h2>       
              <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
                <li class="nav-item" style="width: 50%; text-align: center;">
-                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mark Location</a>
+                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">홀덤바 위치</a>
                </li>
                <li class="nav-item"  style="width: 50%; text-align: center;">
-                 <a class="nav-link" id="web_content-tab" data-toggle="tab" href="#web_content" role="tab" aria-controls="web_content" aria-selected="false">AddContent</a>
+                 <a class="nav-link" id="web_content-tab" data-toggle="tab" href="#web_content" role="tab" aria-controls="web_content" aria-selected="false">이벤트/공지사항</a>
                </li>
                <li class="nav-item"  style="width: 50%; text-align: center;">
-                 <a class="nav-link" id="game_method-tab" data-toggle="tab" href="#game_method" role="tab" aria-controls="game_method" aria-selected="false">Add Game Method</a>
+                 <a class="nav-link" id="game_method-tab" data-toggle="tab" href="#game_method" role="tab" aria-controls="game_method" aria-selected="false">게임방법</a>
                </li>
              </ul>
              <div class="tab-content" id="myTabContent">
@@ -29,45 +29,45 @@
                        
                        <div class="addB_icon">
                         <div class="add_form">
-                            <h1>Mark Location</h1>
+                            <h1>홀덤바 위치</h1>
                             <% if (typeof data != 'undefined') { -%>
                                 <form action="/modifyData" method="POST" enctype="multipart/form-data">
                                     <input type="text" hidden name="object_id" value="<%=data[0]['_id'] %>">
-                                    <label>Place Name</label>
+                                    <label>지역(빌딩)</label>
                                     <input type="text" name="placename" class="form-control" value="<%=data[0]['name']%>">
-                                    <label>Langtitude</label>
+                                    <label>경도</label>
                                     <input type="text" name="langtitude" class="form-control" value="<%=data[0]['langtitude']%>">
-                                    <label>Longtitude</label>
+                                    <label>위도</label>
                                     <input type="text" name="longtitude" class="form-control" value="<%=data[0]['longtitude']%>">
-                                    <label>PICTURE</label>
+                                    <label>첨부파일</label>
                                     <input type="file" name="agent_pic" class="form-control">
-                                    <label>Name</label>
+                                    <label>업체명</label>
                                     <input type="text" name="company_name" class="form-control" value="<%=data[0]['company_name']%>">
-                                    <label>Phone Number</label>
+                                    <label>연락처</label>
                                     <input type="text" name="company_phone" class="form-control" value="<%=data[0]['company_phone']%>">
-                                    <label>Area</label>
+                                    <label>지역</label>
                                     <input type="text" name="company_area" class="form-control" value="<%=data[0]['company_area']%>">
-                                    <button class="btn btn-dark mt-3">Update Content</button>
+                                    <button class="btn btn-dark mt-3">업데이트</button>
                                 </form>
 
                             <% } else { -%>
                                 <form action="/saveLocation" method="POST" enctype="multipart/form-data">
 
-                                    <label>Place Name</label>
+                                    <label>지역(빌딩)</label>
                                     <input type="text" name="placename" class="form-control">
-                                    <label>Langtitude</label>
+                                    <label>경도</label>
                                     <input type="text" name="langtitude" class="form-control">
-                                    <label>Longtitude</label>
+                                    <label>위도</label>
                                     <input type="text" name="longtitude" class="form-control">
-                                    <label>PICTURE</label>
+                                    <label>첨부파일</label>
                                     <input type="file" name="agent_pic" class="form-control">
-                                    <label>Name</label>
+                                    <label>업체명</label>
                                     <input type="text" name="company_name" class="form-control">
-                                    <label>Phone Number</label>
+                                    <label>연락처</label>
                                     <input type="text" name="company_phone" class="form-control">
-                                    <label>Area</label>
+                                    <label>지역</label>
                                     <input type="text" name="company_area" class="form-control">
-                                    <button class="btn btn-dark mt-3">Place Location</button>
+                                    <button class="btn btn-dark mt-3">적용</button>
                                 </form>
 
                             <% } -%>
@@ -81,11 +81,11 @@
                    
                    <div class="container">
                     <div class="addFormContent">
-                        <h2>Add Website Content</h2>
+                        <h2>게임방법</h2>
 
                         <form action="/addGameMethod" method="POST">     
                             <div class="content_form">
-                                <label>Categories</label>
+                                <label>카테고리</label>
                                 <select class="categ_form" name="categ_type">
                                     <option value="game1">블랙잭</option>
                                     <option value="game2">바카라</option>
@@ -107,7 +107,7 @@
                                 <label>게임규칙</label>
                                 <textarea id="gameM-3" name="con3"></textarea>
 
-                                <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
+                                <button class="btn btn-dark mt-3" style="width: 100%;">게임방법</button>
                             </div> <!-- end content_form -->
                         </form>
 
@@ -120,20 +120,20 @@
                    
                    <div class="container">
                     <div class="addFormContent">
-                        <h2>Add Website Content</h2>
+                        <h2>이벤트/공지사항</h2>
 
                         <form action="/contentUpload" method="POST">     
                             <div class="content_form">
-                                <label>Title</label>
+                                <label>제목</label>
                                 <input type="text" name="title" class="form-control">
-                                <label>Categories</label>
+                                <label>카테고리</label>
                                 <select class="categ_form" name="type">
                                     <option value="event">이벤트</option>
                                     <option value="notice">공지사항</option>
                                 </select>
                                 <label>게임소개</label>
                                 <textarea id="content_input" name="content"></textarea>
-                                <button class="btn btn-dark mt-3" style="width: 100%;">POST ARTICLE</button>
+                                <button class="btn btn-dark mt-3" style="width: 100%;">게임방법</button>
                             </div> <!-- end content_form -->
                         </form>
 

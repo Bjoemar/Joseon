@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
             var dbo = db.db('zigbang');
             dbo.collection("web_content").find().sort({ _id: -1 }).toArray(function(err,result){
                 dbo.collection("widgetImage").find().sort({ _id: -1 }).toArray(function(err,image){
-                  console.log(image)
+                  // console.log(image)
                     if(req.session != null) {
                       if(req.useragent.isMobile) {
                           res.render('./mobile_index' , {img_res : image , userLevel : req.session.userLevel , result : result });

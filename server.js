@@ -178,6 +178,7 @@ io.on('connection',function(socket){
 		MongoClient.connect(url,{useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
+
 			dbo.collection('location').find({'company_area' : data.placeName}).toArray(function(err,result){
 				if(err) throw err;
 				io.to(socketid).emit('loadContent',result);
@@ -201,12 +202,13 @@ io.on('connection',function(socket){
 
 
 	socket.on('location_search',function(data){
-		console.log(data);
 		socketid = socket.id;
 		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
 			if (err) throw err;
 			var dbo = db.db('zigbang');
+	
 			dbo.collection('location').find({'company_area' : data.placeSearch}).toArray(function(err,result){
+			
 				if(err) throw err;
 				io.to(socketid).emit('mapDataContent',result);
 				db.close();

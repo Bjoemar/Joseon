@@ -9,7 +9,7 @@
 		<li><a href="event?type=event" class="web-nav-link">이벤트</a></li>
 		<li><a href="notice?type=notice" class="web-nav-link">공지사항</a></li>
 		<li><a href="gameMethod?type" class="web-nav-link">게임방법</a></li>
-		<li><a href="#" class="web-nav-link">Youtube</a></li>
+<!-- 		<li><a href="#" class="web-nav-link">Youtube</a></li> -->
 
 		<div class="right_nav_cont">
 
@@ -19,10 +19,10 @@
 					<button class="reg_btn_open">회원가입</button> 
 				<% } else { %>
 					<% if (userLevel == 'normal') { -%>
-						<a href="/user/logout"><button>LOGOUT</button></a>
+						<a href="/user/logout"><button>로그아웃</button></a>
 					<% } else { -%>
-						<a href="/admin" class="admin_btn"><button  style="border-right: 1px solid gray;" >ADMIN PAGE</button> </a>
-						<a href="/user/logout"><button>LOGOUT</button></a>
+						<a href="/admin" class="admin_btn"><button  style="border-right: 1px solid gray;" >ADMIN PAGE ( 관리자 페이지 )</button> </a>
+						<a href="/user/logout"><button>로그아웃</button></a>
 					<% } -%>
 					
 				<% } %>
@@ -36,7 +36,7 @@
 
 <div class="loginForm">
 	<button class="close_log_btn">X</button>
-	<h2>LOGIN</h2>
+	<h2>로그인</h2>
 	<div class="login_inputs" style="text-align: left;">
 		<form action="/user/login" method="POST" id="log_inner_form">
 			<small style="color: red;"></small>
