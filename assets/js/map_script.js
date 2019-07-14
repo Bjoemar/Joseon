@@ -177,7 +177,7 @@ var callback = function(result,status) {
 			$('.web-listing-area').html('<div class="defaultview">'+
 				
 					'<div class="view_img">'+
-						' <button class="btn btn-sm btn-dark mb-2 mt-2">Update</button> &nbsp; <button class="btn btn-sm btn-danger mb-2 mt-2">delete</button>'+
+						' <button class="btn btn-sm btn-dark mb-2 mt-2">수정</button> &nbsp; <button class="btn btn-sm btn-danger mb-2 mt-2">삭제</button>'+
 						'<img src="'+data[0].agent_pic+'">'+
 					'</div>'+
 					'<div class="view_info">'+
