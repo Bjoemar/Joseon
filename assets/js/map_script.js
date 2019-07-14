@@ -298,7 +298,7 @@ var callback = function(result,status) {
 
 
 			if ($('.admin_btn')[0]) {
-				var buttons = ' <a href="/updateContent?dataId='+data[i]._id+'" class="btn btn-sm btn-dark mb-2 mt-2 content_upd" >Update</a> <button class="btn btn-sm btn-danger mb-2 mt-2 content_del" value="'+data[i]._id+'">delete</button>';
+				var buttons = ' <a href="/updateContent?dataId='+data[i]._id+'" class="btn btn-sm btn-dark mb-2 mt-2 content_upd" >수정</a> <button class="btn btn-sm btn-danger mb-2 mt-2 content_del" value="'+data[i]._id+'">삭제</button>';
 			} else {
 				var buttons = '';
 			}
