@@ -394,7 +394,7 @@ router.post('/modifyData',  function(request,response){
               var path = './'+result[0]['agent_pic'];
 
               try {
-                fs.unlinkSync(path)
+                // fs.unlinkSync(path)
                 dbo.collection('location').deleteOne({"_id" : ObjectID(object_id)})
                 //file removed
               } catch(err) {
