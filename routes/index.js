@@ -14,6 +14,8 @@ var urlencodedParser = bodyParser.urlencoded({extended : false});
 var dt = dateTime.create();
 var ObjectID = require('mongodb').ObjectID;
 
+var multer = require("multer");
+
 router.use(useragent.express());
 
 
@@ -275,6 +277,13 @@ router.post('/maps', urlencodedParser ,function(req,res) {
     // response.sendFile(path.join(__dirname, 'index.html'));
 });
 
+
+
+
+var upload = multer({
+  dest: "/path/to/temporary/directory/to/store/uploaded/files";
+  // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
 
 
 
