@@ -280,10 +280,10 @@ router.post('/maps', urlencodedParser ,function(req,res) {
 
 
 
-var upload = multer({
-  dest: "/path/to/temporary/directory/to/store/uploaded/files";
-  // you might also want to set some limits: https://github.com/expressjs/multer#limits
-});
+// var upload = multer({
+//   dest: "/path/to/temporary/directory/to/store/uploaded/files";
+//   // you might also want to set some limits: https://github.com/expressjs/multer#limits
+// });
 
 
 
