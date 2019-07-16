@@ -162,7 +162,9 @@ router.get('/admin', (req, res) => {
         } else {
           if(!req.useragent.isMobile) {
               res.render('./adminpage', {userLevel : req.session.userLevel});
-          } 
+          } else {
+              res.render('./mobile_index', {userLevel : req.session.userLevel});
+          }  
           
         }
   }  else {
@@ -229,26 +231,27 @@ router.get('/view',function(req,res){
 
         if(result.length > 0) {
 
-          if(req.session.userLevel) {
-              if(req.useragent.isMobile) {
-                  res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
-              } else {
-                  res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
-              }
+            if(req.session.userLevel) {
+                if(req.useragent.isMobile) {
+                    res.render('./mobile_view' ,{'result' : result , userLevel : req.session.userLevel});
+                } else {
+                    res.render('./view' ,{'result' : result , userLevel : req.session.userLevel});
+                }
 
+            } else {
+
+                if(req.useragent.isMobile) {
+                    res.render('./mobile_view' , {'result' : result });
+                } else {
+                    res.render('./view' , {'result' : result });
+                }
+
+            }
+
+            
           } else {
-              if(req.useragent.isMobile) {
-                  res.render('./mobile_view' ,{'result' : result });
-              } else {
-                  res.render('./view' ,{'result' : result });
-              }
-
-          }
-
-          
-        } else {
-      
-                res.redirect('/' , {userLevel : req.session.userLevel});
+        
+                  res.redirect('/' , {userLevel : req.session.userLevel});
      
         
         }
@@ -269,8 +272,6 @@ router.post('/maps', urlencodedParser ,function(req,res) {
     } else {
          res.render('./maps', {'place_search' : place_search , userLevel : req.session.userLevel});
     }
-
-    
     // response.sendFile(path.join(__dirname, 'index.html'));
 });
 
