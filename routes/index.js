@@ -791,7 +791,6 @@ router.get('/modify_method' ,function(request,response){
 
     var obj_id = request.query.obj_id;
 
-    console.log(request);
 
 
     MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
