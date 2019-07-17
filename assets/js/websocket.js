@@ -147,7 +147,7 @@ $('#login_credentials').click(function(){
 	if(!error_user && !error_pass) {
 		$(this).attr('disabled' , 'true');
 		$(this).css('opacity' , '0.7');
-		$(this).html('발견 ..');
+		$(this).html('로그인 하는중');
 		socket.emit('check_credentials',{'user_id' : user_id , 'password' : password});
 	}
 
