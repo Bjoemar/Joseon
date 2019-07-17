@@ -244,4 +244,51 @@ io.on('connection',function(socket){
 		})
 	});
 
+	socket.on('image_randomizer',function(data){
+		socketid = socket.id;
+
+		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+			if (err) throw err;
+			var dbo = db.db('zigbang');
+
+			var limit = 0;
+			dbo.collection('widgetImage').find().toArray(function(err,result){
+				if(err) throw err;
+
+				var length = result.length;
+
+				limit = Math.floor(Math.random() * length);  
+
+				io.to(socketid).emit('data_count', limit);
+			})			
+			db.close();
+
+		})
+	})
+
+
+	socket.on('image_randomizer_count',function(data){
+		socketid = socket.id;
+		
+		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+			if (err) throw err;
+			var dbo = db.db('zigbang');
+
+			
+			dbo.collection('widgetImage').find().skip(data).limit(1).toArray(function(err,result){
+
+				if(err) throw err;
+				io.to(socketid).emit('image_return', result);
+			});
+
+			// dbo.collection("game").find(query).skip(data.skip).limit(10).sort(mysort).toArray(function(err, result) {
+			//    io.to(socketid).emit('getpageload', result);
+			//   db.close();
+			// });
+			
+			db.close();
+
+		})
+	})
+
 });

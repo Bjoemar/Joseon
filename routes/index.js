@@ -940,114 +940,42 @@ router.post('/saveWid_image',function(req,res){
 
   form.parse(req , function(err,fields,files){
 
-    var img1 = files.img1.path;
-    var img2 = files.img2.path;
-    var img3 = files.img3.path;
-    var link1 = fields.link1;
+  
+    var img2 = files.img2.path; 
     var link2 = fields.link2;
-    var link3 = fields.link3;
+  
 
-    var filename1 = uuidv4();
-    var extension1 = path.extname(files.img1.name);
-    var newpath1 = 'assets/images/' + filename1 + extension1;
 
 
     var filename2 = uuidv4();
     var extension2 = path.extname(files.img2.name);
     var newpath2 = 'assets/images/' + filename2 + extension2;
 
-
-    var filename3 = uuidv4();
-    var extension3 = path.extname(files.img3.name);
-    var newpath3 = 'assets/images/' + filename3 + extension3;
-
     MongoClient.connect(url,function(err,db){
         if (err) throw err;
         var dbo = db.db('zigbang');
 
         var img1 = {
-           'image1' : newpath1,
-           'num' : '1',
-           'link1' : link1,
            'image2' : newpath2,
            'num' : '2',
            'link2' : link2,
-           'image3' : newpath3,
-           'num' : '3',
-           'link3' : link3,
         }
 
-
-
-    
-          dbo.collection('widgetImage').find().toArray(function(err,result){
-            if (result > 0) {
-
-              if (files.img1.name) {
-              
-               dbo.collection('widgetImage').updateOne({'num': '1'},
-                    {$set:{ "image1" : newpath1,
-                      "link1" : link1,}}
-                      );
-              }
-
-              if (files.img2.name) {
-                
-                dbo.collection('widgetImage').updateOne({'num': '1'},
-                    {$set:{ "image2" : newpath2,
-                      "link2" : link2,}}
-                      );
-              }
-
-              if (files.img3.name) {
-              
-                dbo.collection('widgetImage').updateOne({'num': '1'},
-                  {$set:{ "image3" : newpath3,
-                    "link3" : link3,}}
-                    );
-              }
-              
-            } else {
-              console.log(img1)
-              dbo.collection('widgetImage').insertOne(img1);
-            }
-    
-        })
+        dbo.collection('widgetImage').insertOne(img1);
 
 
 
         
     });
 
-
-    if (files.img1.name != '') {
-      
-        fs.rename(img1,newpath1,function(err){
-          if (err) throw err;
-      
-        });
-    }
-
-
     if (files.img2.name != '') {
       
-     
        fs.rename(img2,newpath2,function(err){
          if (err) throw err;
-       
-
        });
     }
 
 
-    if (files.img3.name != '') {
-
-      fs.rename(img3,newpath3,function(err){
-        if (err) throw err;
-       
-
-      });
-    }
 
 
 

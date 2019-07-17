@@ -166,3 +166,19 @@ socket.on('InvalidCredentials',function(){
 socket.on('validCredentials',function(){
 	$('#log_inner_form').submit();
 })
+
+
+
+
+setInterval(function(){
+	socket.emit('image_randomizer');
+},2500);
+
+socket.on('image_return',function(data){
+	$('.mobile_home_display_image').attr('src', data[0]['image2']);
+	$('.home-image-holder img').attr('src', data[0]['image2']);
+})
+
+socket.on('data_count',function(count){
+	socket.emit('image_randomizer_count',count);
+})
