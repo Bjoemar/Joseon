@@ -21,8 +21,11 @@
 					<% if (userLevel == 'normal') { -%>
 						<a href="/user/logout"><button>로그아웃</button></a>
 					<% } else { -%>
-						<a href="/admin" class="admin_btn"><button  style="border-right: 1px solid gray;" >ADMIN PAGE ( 관리자 페이지 )</button> </a>
+						<input type="text" hidden id="admin_validator" value="admin_login">
+						<a href="/admin_credentials_list"><button>정보 목록</button></a>
+						<a href="/admin" class="admin_btn"><button  style="border-right: 1px solid gray; border-left: 1px solid gray;" >ADMIN PAGE ( 관리자 페이지 )</button> </a>
 						<a href="/user/logout"><button>로그아웃</button></a>
+
 					<% } -%>
 					
 				<% } %>

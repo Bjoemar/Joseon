@@ -1059,7 +1059,38 @@ router.post('/saveWid_image',function(req,res){
       res.end();
     },2000);
   })
-})
+});
+
+
+
+router.get('/admin_credentials_list',function(req,res){
+
+
+    if(req.session.userLevel == 'admin') {
+
+      if(req.useragent.isMobile) {
+        res.redirect('/'); 
+      } else {
+          MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+            if (err) throw err;
+            var dbo = db.db('zigbang');
+
+            dbo.collection('user_credentials').find().toArray(function(err,result){
+                if(err) throw err;
+                res.render('./admin_credentials' , {userLevel : req.session.userLevel , 'data' : result});
+                db.close();
+            })
+        })
+      }
+      
+    } else {
+      res.write('404 Page not found');
+    }
+
+
+});
+
+
 
 
 

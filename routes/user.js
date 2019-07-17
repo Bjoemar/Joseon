@@ -63,12 +63,11 @@ router.post('/login',urlencodedParser, function(req,res){
 			if(result[0].userLevel == 'admin') {
 
 				if(req.useragent.isMobile) {
-				    res.render('./mobile_index' , {img_res : image , result : result});
+					res.redirect('/'); 
+				    // res.render('./mobile_index' , {img_res : image , result : result});
 				} else {
 					res.redirect('/admin'); 
 				}
-
-
 				
 			} else {
 				res.redirect('/'); 

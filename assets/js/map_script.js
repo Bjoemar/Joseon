@@ -172,12 +172,18 @@ var callback = function(result,status) {
 	socket.on('loadContent',function(data){
 
 
+
+		if ($('#admin_validator').val() == 'admin_login') {
+			var admin_btn = '<a href="/updateContent?dataId='+data[0]._id+'" class="btn btn-sm btn-dark mb-2 mt-2 content_upd">수정</a> &nbsp; <button class="btn btn-sm btn-danger mb-2 mt-2 content_del" value="5d2d8506a33eb70019ceedc6">삭제</button>'
+		} else {
+			var admin_btn = '';
+		}
 		if(data.length > 0) {
 
 			$('.web-listing-area').html('<div class="defaultview">'+
 				
 					'<div class="view_img">'+
-						' <button class="btn btn-sm btn-dark mb-2 mt-2">수정</button> &nbsp; <button class="btn btn-sm btn-danger mb-2 mt-2">삭제</button>'+
+						admin_btn+
 						'<img src="'+data[0].agent_pic+'">'+
 					'</div>'+
 					'<div class="view_info">'+
@@ -203,6 +209,8 @@ var callback = function(result,status) {
 
 		} 
 	});
+
+
 
 
 	$('#uploadContent').click(function(){
