@@ -227,6 +227,9 @@ $(document).ready(function(){
 	     		$('.g-navs-content h5 ').css('line-height','50px');
 	     		$('.g-navs-content h6 ').css('line-height','50px');
 	     		$('.g-navs-content label ').css('line-height','50px');
+	     		$('.g-navs-content span ').css('line-height','50px');
+	     		$('.g-navs-content td ').css('line-height','50px');
+	     		$('.g-navs-content th ').css('line-height','50px');
             if (screenlength <= 600) {
 
  
