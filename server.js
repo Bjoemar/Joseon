@@ -259,7 +259,9 @@ io.on('connection',function(socket){
 
 				limit = Math.floor(Math.random() * length);  
 
-				io.to(socketid).emit('data_count', limit);
+				if (limit > 0) {
+					io.to(socketid).emit('data_count', limit);
+				}
 			})			
 			db.close();
 
