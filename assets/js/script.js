@@ -207,5 +207,5 @@ $('.mobile_game_method').click(function(){
 
 
 $('.home_widget').click(function(){
-	window.open("//xn--qn1bl4xpuffop.com/openWidget", "_blank", "toolbar=yes,scrollbars=no,resizable=yes,width=500,height=120");
+	window.open("//xn--qn1bl4xpuffop.com/openWidget", "_blank", "toolbar=yes,scrollbars=no,resizable=no,width=1200,height=1200");
 })

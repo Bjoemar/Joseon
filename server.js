@@ -291,4 +291,17 @@ io.on('connection',function(socket){
 		})
 	})
 
+	socket.on('delete_wid_img',function(data){
+		socketid = socket.id;
+		var widget_id = data.data_id;
+
+		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+		    if (err) throw err;
+		    var dbo = db.db('zigbang');
+
+		    dbo.collection('widgetImage').deleteOne({"_id" : ObjectID(widget_id)})
+
+		    io.to(socketid).emit('delete_image_wid', {widget_id : widget_id});
+		})
+	})
 });

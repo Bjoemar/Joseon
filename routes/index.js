@@ -932,7 +932,9 @@ router.get('/openWidget',function(req,res){
       })
     })
     
-})
+});
+
+
 
 router.post('/saveWid_image',function(req,res){
 
@@ -1017,8 +1019,6 @@ router.get('/admin_credentials_list',function(req,res){
 
 
 });
-
-
 
 
 
