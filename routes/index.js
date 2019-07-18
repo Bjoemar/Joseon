@@ -512,7 +512,7 @@ router.get('/gameMethod',function(request,response){
                 if(request.useragent.isMobile) {
                     
                    response.render('./mobile_gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
-                    b.close();
+                    db.close();
                 } else {
                     
                    response.render('./gameMethod' , {userLevel : request.session.userLevel , 'data' : result  ,  'img' : 'http://www.high1.com/high1/new/images/common/title/h3_casino5_4.gif'});
