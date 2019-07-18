@@ -205,4 +205,36 @@ $('.mobile_game_method').click(function(){
 
 $('.home_widget').click(function(){
 	window.open("//xn--qn1bl4xpuffop.com/openWidget", "_blank", "toolbar=yes,scrollbars=no,resizable=no,width=1200,height=1200");
-})
+});
+
+
+
+
+$(document).ready(function(){
+    console.log('IPHONE LAYOUT')
+    setTimeout(function(){
+        var screenlength = $(window).width();
+        var ua = navigator.userAgent.toLowerCase(); 
+        if (ua.indexOf('safari') != -1) { 
+          if (ua.indexOf('chrome') > -1) {
+          } else {
+
+	     		$('.g-navs-content p ').css('line-height','50px');
+	     		$('.g-navs-content h1 ').css('line-height','50px');
+	     		$('.g-navs-content h2 ').css('line-height','50px');
+	     		$('.g-navs-content h3 ').css('line-height','50px');
+	     		$('.g-navs-content h4 ').css('line-height','50px');
+	     		$('.g-navs-content h5 ').css('line-height','50px');
+	     		$('.g-navs-content h6 ').css('line-height','50px');
+	     		$('.g-navs-content label ').css('line-height','50px');
+            if (screenlength <= 600) {
+
+ 
+
+            } else if (screenlength <= 768) {
+                      }
+          }
+        }
+
+    },3000);
+});
