@@ -28,9 +28,6 @@ $('.regOpen').click(function(){
 
 })
 
-
-
-
 $('#content_input').summernote({
 	placeholder: 'Start Here ..',
 	height: 480,
