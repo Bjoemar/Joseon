@@ -175,8 +175,8 @@ setInterval(function(){
 },2500);
 
 socket.on('image_return',function(data){
-	$('.mobile_home_display_image').attr('src', data[0]['image2']);
-	$('.home-image-holder img').attr('src', data[0]['image2']);
+	$('.mobile_view_load_image').html('<img src="'+data[0]['image2']+'" style="width: 100%;">');
+	$('.home-image-holder').html('<img src="'+data[0]['image2']+'" style="height: 400px;">');
 })
 
 socket.on('data_count',function(count){
