@@ -156,8 +156,8 @@ $('#login_credentials').click(function(){
 
 socket.on('InvalidCredentials',function(){
 	$('input[name=log_user_id]').prev().html('* Account Does not exist').css('color' , 'red');
-	$('input[name=log_user_id]').css('border' , '1px solid red');
-	$('input[name=log_password]').css('border' , '1px solid red');
+	$('input[name=log_user_id]').css('border','1px solid red');
+	$('input[name=log_password]').css('border','1px solid red');
 	$('#login_credentials').removeAttr('disabled');
 	$('#login_credentials').css('opacity' , '1');
 	$('#login_credentials').html('로그인');
@@ -166,9 +166,7 @@ socket.on('InvalidCredentials',function(){
 socket.on('validCredentials',function(){
 	$('#log_inner_form').submit();
 })
-
-
-
+	
 
 setInterval(function(){
 	socket.emit('image_randomizer');
