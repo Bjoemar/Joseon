@@ -5,10 +5,8 @@
 				<a href="/"><img src="assets/images/web-logo.png"></a>
 			</div>
 		</li>
-
-
 		<% if (typeof userLevel == 'undefined'){ %>
-			<button class="login_btn_open web-nav-link">홀덤바 위치</button> 
+			<button class="login_btn_open web-nav-link" style="background: transparent; border: none;">홀덤바 위치</button> 
 
 		<% } else { %>
 			<% if (userLevel == 'normal') { -%>
@@ -18,9 +16,7 @@
 			<% } -%>
 			
 		<% } %>
-		
 
-		<li><a href="maps" class="web-nav-link">홀덤바 위치</a></li>
 		<li><a href="event?type=event" class="web-nav-link">이벤트</a></li>
 		<li><a href="notice?type=notice" class="web-nav-link">공지사항</a></li>
 		<li><a href="gameMethod?type" class="web-nav-link">게임방법</a></li>

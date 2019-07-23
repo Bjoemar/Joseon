@@ -56,12 +56,39 @@ router.get('/', (req, res) => {
 
 router.get('/maps', (req, res) => {
 
-   if(req.useragent.isMobile) {
-       res.render('./mobile_maps', {userLevel : req.session.userLevel});
-   } else {
-      res.render('./maps', {userLevel : req.session.userLevel});
-   }
-	
+
+  if(req.session.userLevel){
+      
+          if(req.session.userLevel == 'normal') {
+
+
+             
+           if(req.useragent.isMobile) {
+               res.render('./mobile_maps', {userLevel : req.session.userLevel});
+           } else {
+              res.render('./maps', {userLevel : req.session.userLevel});
+           }
+        
+
+        } else {
+         
+           if(!req.useragent.isMobile) {
+              res.render('./maps', {userLevel : req.session.userLevel});
+           } else {
+             res.render('./mobile_maps', {userLevel : req.session.userLevel});
+              
+           }
+          
+
+
+          
+        }
+  }  else {
+      res.send('404 Page Not Found ')
+  }
+
+
+
    
 });
 
