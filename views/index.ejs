@@ -30,7 +30,16 @@
   					<div class="search_box">
   						<img src="assets/images/searchicon.png">
   						<input type="text" name="placeSearch" placeholder="원하시는 지역을 입력해주세요">
-  						<button id="search_place">찾아보기</button>
+
+              <% if (typeof userLevel == 'undefined'){ %>
+                   <button id="search_place" class="login_btn_open" type="button">찾아보기</button>
+              <% } else { %>
+               
+                  <button id="search_place">찾아보기</button>
+              <% } %>
+              
+
+  					
   					</div> 
   				</form>
   			</div> <!-- end inner_banner -->
@@ -43,7 +52,15 @@
   		<div class="intro_col">
   			<div class="intro_col_header">
   				<label>이벤트</label>
-  				<a href="/event?type=event"><button>더보기</button></a>
+
+           <% if (typeof userLevel == 'undefined'){ %>
+                  <a href="#" class="login_btn_open"><button>더보기</button></a>
+            <% } else { %>
+             
+                <a href="/event?type=event"><button>더보기</button></a>
+            <% } %>
+            
+  				
   			</div>
 
         	<% var resLen = result.length;
@@ -52,8 +69,21 @@
                   <% if (result[i]['type'] == 'event' ) { -%>
                   <div class="home_cont">
                     
-                     <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                     <small></small>
+                    
+
+                     <% if (typeof userLevel == 'undefined'){ %>
+                            <a href="#" class="login_btn_open"><button>더보기</button></a>
+                            <a style="text-decoration: none; color: black;" class="login_btn_open" href="#"><%= result[i]['title']%></a>
+                          <small></small>
+
+                      <% } else { %>
+                       
+                          <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                          <small></small>
+
+                      <% } %>
+                      
+
                   </div>
                   <% } -%>
 
@@ -75,8 +105,23 @@
                  for (i = 0; i < resLen; i++) { %>
                    <% if (result[i]['type'] == 'notice' ) { -%>
                    <div class="home_cont">
-                      <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                      <small></small>
+                   
+
+
+                     <% if (typeof userLevel == 'undefined'){ %>
+                            <a href="#" class="login_btn_open"><button>더보기</button></a>
+                            <a style="text-decoration: none; color: black;" class="login_btn_open" href="#"><%= result[i]['title']%></a>
+                          <small></small>
+
+                      <% } else { %>
+                       
+                            <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                             <small></small>
+
+                      <% } %>
+                      
+
+
                     </div>  
                    <% } -%>
 

@@ -45,8 +45,19 @@
                                  for (i = 0; i < resLen; i++) { %>
                                    <% if (result[i]['type'] == 'event' ) { -%>
                                    <div class="description  <% if ((i % 2) == 0 ) { -%> class_even <% }%> ">
-                                      <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                                      <small style="float: right;"><%= result[i]['date']%></small>
+
+
+                                      <% if (typeof userLevel == 'undefined'){ %>
+                                          <a style="text-decoration: none; color: black;" href="/m_login"><%= result[i]['title']%></a>
+                                          <small style="float: right;"><%= result[i]['date']%></small>
+                                      <% } else { %>
+                                        <a style="text-decoration: none; color: black;" href="/view?type=event&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                                        <small style="float: right;"><%= result[i]['date']%></small>
+                                        
+                                      <% } %>
+    
+
+                                      
                                     </div>
                                    <% } -%>
                               <%
@@ -63,8 +74,19 @@
                                for (i = 0; i < resLen; i++) { %>
                                  <% if (result[i]['type'] == 'notice' ) { -%>
                                  <div class="description <% if ((i % 2) == 0 ) { -%> class_even <% }%>">
-                                    <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
-                                    <small style="float: right;"><%= result[i]['date']%></small>
+
+
+
+                                  <% if (typeof userLevel == 'undefined'){ %>
+                                      <a style="text-decoration: none; color: black;" href="/m_login"><%= result[i]['title']%></a>
+                                      <small style="float: right;"><%= result[i]['date']%></small>
+                                  <% } else { %>
+                                   <a style="text-decoration: none; color: black;" href="/view?type=notice&article_uid=<%= result[i]['content_id']%>"><%= result[i]['title']%></a>
+                                    <small style="float: right;"><%= result[i]['date']%></small>   
+                                  <% } %>
+                                  
+
+                                    
                                   </div>
                                  <% } -%>
                             <%
