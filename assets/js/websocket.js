@@ -22,6 +22,7 @@ var inputArr = [
 var inputArrLen = inputArr.length;
 
 $('#register_credentials').click(function(){
+	
 
 	for(i =0; i < inputArrLen; i++) {
 		if (inputArr[i].val().length == 0) {
@@ -35,9 +36,11 @@ $('#register_credentials').click(function(){
 	}
 
 	if(!error_id && !error_pass &&!error_name &&!error_num && !error_email &&!error_count) {
+		$(this).attr('disabled' , 'true');
+		$(this).css('opacity' , '0.7');
+		$(this).html('잠시만 기다려 주세요.');
 		$('#reg_inner_form').submit();
 	}
-
 
 });
 
@@ -59,7 +62,7 @@ $('.reg_inputs input').change(function(){
  		isnotEmpty($(this));
  		socket.emit('check_reg_email',{'reg_email' : reg_email});
  	} else {
- 		$(this).prev().html('* Please Provide a valid email').css('color' , 'red');
+ 		$(this).prev().html('* Email 을 올바르게 작성해 주세요.').css('color' , 'red');
  		$(this).css('border' , '1px solid red');
  	}
  	
@@ -69,7 +72,7 @@ $('.reg_inputs input').change(function(){
 
 $('input[name=reg_password2]').change(function(){
 	if($(this).val() != $('input[name=reg_password]').val()) {
-		$('input[name=reg_password]').prev().html('* Password not match').css('color' , 'red');
+		$('input[name=reg_password]').prev().html('* Password 가 일치하지 않습니다.').css('color' , 'red');
 		$('input[name=reg_password]').css('border' , '1px solid red');
 		error_pass = true;
 	} else {
@@ -93,10 +96,10 @@ function isnotEmpty(input){
 
 socket.on('isUsed',function(data){
 	if(data.type == 'email') {
-		$('input[name=reg_email').prev().html('* The email is already taken').css('color' , 'red');
+		$('input[name=reg_email').prev().html('* Email 이 이미 있습니다').css('color' , 'red');
 		$('input[name=reg_email').css('border' , '1px solid red');
 	} else if(data.type == 'user_id') {
-		$('input[name=reg_user_id').prev().html('* The User_id is already taken').css('color' , 'red');
+		$('input[name=reg_user_id').prev().html('* ID 가 이미 있습니다.').css('color' , 'red');
 		$('input[name=reg_user_id').css('border' , '1px solid red');
 	}
 })
@@ -125,7 +128,7 @@ $('#login_credentials').click(function(){
 	var error_pass = false;
 
 	if(user_id.length == 0) {
-		$('input[name=log_user_id]').prev().html('* ID is required').css('color' , 'red');
+		$('input[name=log_user_id]').prev().html('* ID를 입력하세요').css('color' , 'red');
 		$('input[name=log_user_id]').css('border' , '1px solid red');
 		error_user = true;
 	} else {
@@ -135,7 +138,7 @@ $('#login_credentials').click(function(){
 	}
 
 	if(password.length == 0) {
-		$('input[name=log_password]').prev().html('* Password is required').css('color' , 'red');
+		$('input[name=log_password]').prev().html('* Password를 입력하세요').css('color' , 'red');
 		$('input[name=log_password]').css('border' , '1px solid red');
 		error_pass = true;
 	} else {
@@ -155,7 +158,7 @@ $('#login_credentials').click(function(){
 
 
 socket.on('InvalidCredentials',function(){
-	$('input[name=log_user_id]').prev().html('* Account Does not exist').css('color' , 'red');
+	$('input[name=log_user_id]').prev().html('* 계정 정보가 일치하지 않습니다.').css('color' , 'red');
 	$('input[name=log_user_id]').css('border','1px solid red');
 	$('input[name=log_password]').css('border','1px solid red');
 	$('#login_credentials').removeAttr('disabled');

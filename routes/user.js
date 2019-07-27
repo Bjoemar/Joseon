@@ -47,7 +47,6 @@ router.get('/logout',function(req,res){
 
 
 
-
 router.post('/login',urlencodedParser, function(req,res){
 	sess = req.session;
 	var {log_user_id} = req.body;
@@ -74,9 +73,6 @@ router.post('/login',urlencodedParser, function(req,res){
 			}
 		})
 	});
-
-	
-
 });
 
 
