@@ -891,9 +891,9 @@ router.get('/updateHomeContent',function(req,res){
                    res.render('./edit_webContent' ,{'result' : result , userLevel : req.session.userLevel});
                }
 
-           } 
+           }  
 
-   } else {
+          } else {
        
                  res.redirect('/' , {userLevel : req.session.userLevel});
       
@@ -1026,7 +1026,16 @@ router.get('/admin_credentials_list',function(req,res){
     if(req.session.userLevel == 'admin') {
 
       if(req.useragent.isMobile) {
-        res.redirect('/'); 
+           MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+             if (err) throw err;
+             var dbo = db.db('zigbang');
+
+             dbo.collection('user_credentials').find().toArray(function(err,result){
+                 if(err) throw err;
+                 res.render('./mobile_admin_credentials' , {userLevel : req.session.userLevel , 'data' : result});
+                 db.close();
+             })
+         })
       } else {
           MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
             if (err) throw err;
