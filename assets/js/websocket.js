@@ -95,23 +95,16 @@ function isnotEmpty(input){
 
 
 socket.on('isUsed',function(data){
-	if(data.type == 'email') {
-		$('input[name=reg_email').prev().html('* Email 이 이미 있습니다').css('color' , 'red');
-		$('input[name=reg_email').css('border' , '1px solid red');
-	} else if(data.type == 'user_id') {
-		$('input[name=reg_user_id').prev().html('* ID 가 이미 있습니다.').css('color' , 'red');
-		$('input[name=reg_user_id').css('border' , '1px solid red');
-	}
+
+	$('input[name=reg_user_id').prev().html('* ID 가 이미 있습니다.').css('color' , 'red');
+	$('input[name=reg_user_id').css('border' , '1px solid red');
+	
 })
 
 socket.on('isUnused',function(data){
-	if(data.type == 'email') {
-		isnotEmpty($('input[name=reg_email]'))
-		error_email = false;
-	} else if(data.type == 'user_id') {
-		isnotEmpty($('input[name=reg_user_id]'))
-		error_id = false;
-	}
+
+	isnotEmpty($('input[name=reg_user_id]'))
+	error_id = false;
 })
 
 

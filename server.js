@@ -72,16 +72,13 @@ server.listen(server_port , server_ip_address , function(){
 
 
 
-
 function checkCredentials(data,input_type,socketID) {
 	MongoClient.connect(url,{useNewUrlParser : true}, function(err,db){
 		if (err) throw err;
 		var dbo = db.db('zigbang');
-		if(input_type == 'email') {
-			var query =  {email : data.reg_email};
-		}else {
-			var query =  {user_id : data.user_id};
-		}
+
+		var query =  {user_id : data.user_id};
+
 
 		
 		dbo.collection("user_credentials").find(query).toArray(function(err,result){
@@ -99,13 +96,6 @@ function checkCredentials(data,input_type,socketID) {
 
 // data coming from the client js
 io.on('connection',function(socket){ 	
-
-	socket.on('check_reg_email',function(data){
-		socketid = socket.id;
-		var	input_type = 'email';
-
-		checkCredentials(data,input_type,socketid)
-	})
 
 
 	socket.on('check_user_id',function(data){
