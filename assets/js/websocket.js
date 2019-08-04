@@ -7,7 +7,7 @@ var error_id = false;
 var error_pass = false;
 var error_name = false;
 var error_num = false;
-var error_email = false;
+// var error_email = false;
 var error_count = false;
 
 var inputArr = [
@@ -16,7 +16,7 @@ var inputArr = [
 	  $('input[name=reg_password2]'),
 	  $('input[name=reg_name]'),
 	  $('input[name=reg_cellphone]'),
-	  $('input[name=reg_email]')
+	  // $('input[name=reg_email]')
 ];
 
 var inputArrLen = inputArr.length;
@@ -35,7 +35,7 @@ $('#register_credentials').click(function(){
 		} 
 	}
 
-	if(!error_id && !error_pass &&!error_name &&!error_num && !error_email &&!error_count) {
+	if(!error_id && !error_pass &&!error_name &&!error_num &&!error_count) {
 		$(this).attr('disabled' , 'true');
 		$(this).css('opacity' , '0.7');
 		$(this).html('잠시만 기다려 주세요.');
@@ -55,19 +55,19 @@ $('.reg_inputs input').change(function(){
  	socket.emit('check_user_id',{'user_id' : user_id});
  })
 
- $('input[name=reg_email]').change(function(){
- 	error_email = true;
- 	var reg_email = $(this).val();
- 	if(validate(reg_email)) {
- 		isnotEmpty($(this));
- 		socket.emit('check_reg_email',{'reg_email' : reg_email});
- 	} else {
- 		$(this).prev().html('* Email 을 올바르게 작성해 주세요.').css('color' , 'red');
- 		$(this).css('border' , '1px solid red');
- 	}
+ // $('input[name=reg_email]').change(function(){
+ // 	error_email = true;
+ // 	var reg_email = $(this).val();
+ // 	if(validate(reg_email)) {
+ // 		isnotEmpty($(this));
+ // 		socket.emit('check_reg_email',{'reg_email' : reg_email});
+ // 	} else {
+ // 		$(this).prev().html('* Email 을 올바르게 작성해 주세요.').css('color' , 'red');
+ // 		$(this).css('border' , '1px solid red');
+ // 	}
  	
  	
- })
+ // })
 
 
 $('input[name=reg_password2]').change(function(){
