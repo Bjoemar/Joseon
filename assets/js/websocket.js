@@ -44,29 +44,55 @@ $('#register_credentials').click(function(){
 		} else {
 			var user_codes = $('input[name=sms_codes]').val();
 			var reg_cellphone = $('input[name=reg_cellphone]').val();
-			socket.emit('VerifyUser',{'number' : reg_cellphone , 'codes' , user_codes});
-			
+
+			socket.emit('verifiedNumber',{'number' : reg_cellphone , 'code' : user_codes});
+
+			// if ($('input[name=sms_codes]').val() == data.codes) {
+			// 	var number = $('input[name=reg_cellphone]').val();
+				
+			// 	$('#reg_inner_form').submit();
+			// } else {
+			// 	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
+			// }	
 		}
 	}
 });
 
-socket.on('invalid_phone_number',function(data){
+socket.on('registerAccount',function(data){
+	$('#reg_inner_form').submit();
+});
+
+socket.on('registerFailed',function(data){
 	$('#register_credentials').attr('disabled' , 'false');
 	$('#register_credentials').css('opacity' , '1');
 	$('#register_credentials').html('확인.');
-	$('input[name=reg_cellphone]').prev().html('Invalid Phone number');
+	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
 })
+
+$('#register_verification').click(function(){
+	$(this).attr('disabled' , 'true');
+	$(this).css('opacity' , '0.7');
+	$(this).html('Verifying Number .. ');
+
+	var user_codes = $('input[name=sms_codes]').val();
+	var reg_cellphone = $('input[name=reg_cellphone]').val();
+	socket.emit('VerifyUser',{'number' : reg_cellphone});
+});
+
+
+socket.on('invalid_phone_number',function(data){
+	$('#register_verification').attr('disabled' , 'false');
+	$('#register_verification').css('opacity' , '1');
+	$('#register_verification').html('Verify Number.');
+	$('input[name=reg_cellphone]').prev().html('Invalid Phone number');
+});
 
 
 socket.on('number_verified',function(data){
-	if ($('input[name=sms_codes]').val() == data.codes) {
-		var number = $('input[name=reg_cellphone]').val();
-		socket.emit('verifiedNumber',{'number' : reg_cellphone});
-		$('#reg_inner_form').submit();
-	} else {
-		$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
-	}
-})
+	$('#register_credentials').show();
+	$('#register_verification').hide();
+});
+
 
 
 $('.reg_inputs input').change(function(){

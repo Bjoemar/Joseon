@@ -304,42 +304,74 @@ io.on('connection',function(socket){
 		socketid = socket.id;
 		var user_number = data.number;
 		
+		if (arrayHolder.length > 0) {
+			for (var n = 0; n < arrayHolder.length; n++) {
+				if (arrayHolder[n].number == user_number) {
+					 io.to(socketid).emit('number_verified', {'codes' : arrayHolder[n].code});
+				} else {
+					var verification = Math.floor(1000 + Math.random() * 9000);
+					request.post('https://textbelt.com/text', {
+					  form: {
+					    phone: user_number,
+					    message: 'Your Verificatioc Code is '+verification,
+					    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+					  },
+					}, function(err, httpResponse, body) {
+					  if (err) {
+					    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+					    return;
+					  }
 
-		for (var n = 0; n < arrayHolder.length; n++) {
-			if (arrayHolder[n].number == user_number) {
-				 io.to(socketid).emit('number_verified', {'codes' : arrayHolder[n].code});
-			} else {
-				var verification = Math.floor(1000 + Math.random() * 9000);
-				request.post('https://textbelt.com/text', {
-				  form: {
-				    phone: user_number,
-				    message: 'Your Verificatioc Code is '+verification,
-				    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
-				  },
-				}, function(err, httpResponse, body) {
-				  if (err) {
-				    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
-				    return;
-				  }
+					  	var user_num_object = {
+					  		'number' : user_number,
+					  		'code' : verification,
+					  	};
 
-				  	var user_num_object = {
-				  		'number' : user_number,
-				  		'code' : verification,
-				  	};
-
-				  	arrayHolder.push(user_num_object);
-				   io.to(socketid).emit('number_verified', {'codes' : verification});
-				})
+					  	arrayHolder.push(user_num_object);
+					   io.to(socketid).emit('number_verified', {'codes' : verification});
+					})
+				}
 			}
+		} else {
+			var verification = Math.floor(1000 + Math.random() * 9000);
+			request.post('https://textbelt.com/text', {
+			  form: {
+			    phone: user_number,
+			    message: 'Your Verification Code is '+verification,
+			    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+			  },
+			}, function(err, httpResponse, body) {
+			  if (err) {
+			    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+			    return;
+			  }
+
+			  	var user_num_object = {
+			  		'number' : user_number,
+			  		'code' : verification,
+			  	};
+
+			  	arrayHolder.push(user_num_object);
+			   io.to(socketid).emit('number_verified', {'codes' : verification});
+			})
 		}
+
 
 	})
 
 	socket.on('verifiedNumber',function(data){
+		socketid = socket.id;
 		var user_number = data.number;
+		var user_code = data.code;
  		for (var n = 0; n < arrayHolder.length; n++) {
  			if (arrayHolder[n].number == user_number) {
-					 arrayHolder.splice(n,1);
+ 				if (arrayHolder[n].code == user_code) {
+ 					io.to(socketid).emit('registerAccount');
+ 					arrayHolder.splice(n,1);
+ 				} else {
+ 					io.to(socketid).emit('registerFailed');
+ 				}
+					
 			}
  		}
 	})
