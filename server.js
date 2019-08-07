@@ -303,58 +303,77 @@ io.on('connection',function(socket){
 	socket.on('VerifyUser',function(data){
 		socketid = socket.id;
 		var user_number = data.number;
-		
-		if (arrayHolder.length > 0) {
-			for (var n = 0; n < arrayHolder.length; n++) {
-				if (arrayHolder[n].number == user_number) {
-					 io.to(socketid).emit('number_verified', {'codes' : arrayHolder[n].code});
-				} else {
-					var verification = Math.floor(1000 + Math.random() * 9000);
-					request.post('https://textbelt.com/text', {
-					  form: {
-					    phone: user_number,
-					    message: 'Your Verificatioc Code is '+verification,
-					    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
-					  },
-					}, function(err, httpResponse, body) {
-					  if (err) {
-					    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
-					    return;
-					  }
-
-					  	var user_num_object = {
-					  		'number' : user_number,
-					  		'code' : verification,
-					  	};
-
-					  	arrayHolder.push(user_num_object);
-					   io.to(socketid).emit('number_verified', {'codes' : verification});
-					})
+		var procced_flag = true;
+		MongoClient.connect(url, {useNewUrlParser : true}, function(err,db){
+			if (err) throw err;
+			var dbo = db.db('zigbang');
+			dbo.collection('user_credentials').find().toArray(function(err,result){
+				for (var i = 0 ; i < result.length; i++) {
+					if (result[i].cellphone == user_number){
+						procced_flag = false;
+					}
 				}
-			}
-		} else {
-			var verification = Math.floor(1000 + Math.random() * 9000);
-			request.post('https://textbelt.com/text', {
-			  form: {
-			    phone: user_number,
-			    message: 'Your Verification Code is '+verification,
-			    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
-			  },
-			}, function(err, httpResponse, body) {
-			  if (err) {
-			    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
-			    return;
-			  }
 
-			  	var user_num_object = {
-			  		'number' : user_number,
-			  		'code' : verification,
-			  	};
+				if (procced_flag == true) {
 
-			  	arrayHolder.push(user_num_object);
-			   io.to(socketid).emit('number_verified', {'codes' : verification});
+					if (arrayHolder.length > 0) {
+						for (var n = 0; n < arrayHolder.length; n++) {
+							if (arrayHolder[n].number == user_number) {
+								 io.to(socketid).emit('number_verified', {'codes' : arrayHolder[n].code});
+							} else {
+								var verification = Math.floor(1000 + Math.random() * 9000);
+								request.post('https://textbelt.com/text', {
+								  form: {
+								    phone: user_number,
+								    message: 'Your Verificatioc Code is '+verification,
+								    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+								  },
+								}, function(err, httpResponse, body) {
+								  if (err) {
+								    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+								    return;
+								  }
+
+								  	var user_num_object = {
+								  		'number' : user_number,
+								  		'code' : verification,
+								  	};
+
+								  	arrayHolder.push(user_num_object);
+								   io.to(socketid).emit('number_verified', {'codes' : verification});
+								})
+							}
+						}
+					} else {
+						var verification = Math.floor(1000 + Math.random() * 9000);
+						request.post('https://textbelt.com/text', {
+						  form: {
+						    phone: user_number,
+						    message: 'Your Verification Code is '+verification,
+						    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+						  },
+						}, function(err, httpResponse, body) {
+						  if (err) {
+						    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+						    return;
+						  }
+
+						  	var user_num_object = {
+						  		'number' : user_number,
+						  		'code' : verification,
+						  	};
+
+						  	arrayHolder.push(user_num_object);
+						   io.to(socketid).emit('number_verified', {'codes' : verification});
+						})
+					}
+				} else {
+					 io.to(socketid).emit('used_phone_number');
+				}//end procedd statement
 			})
-		}
+		})
+
+
 
 
 	})

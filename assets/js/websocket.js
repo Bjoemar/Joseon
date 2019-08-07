@@ -88,6 +88,15 @@ socket.on('invalid_phone_number',function(data){
 });
 
 
+socket.on('used_phone_number',function(data){
+	$('#register_verification').attr('disabled' , 'false');
+	$('#register_verification').css('opacity' , '1');
+	$('#register_verification').html('Verify Number.');
+	$('input[name=reg_cellphone]').prev().html('Number is already used');
+});
+
+
+
 socket.on('number_verified',function(data){
 	$('#register_credentials').show();
 	$('#register_verification').hide();
