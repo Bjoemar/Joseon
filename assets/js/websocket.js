@@ -44,7 +44,6 @@ $('#register_credentials').click(function(){
 		} else {
 			var user_codes = $('input[name=sms_codes]').val();
 			var reg_cellphone = $('input[name=reg_cellphone]').val();
-
 			socket.emit('verifiedNumber',{'number' : reg_cellphone , 'code' : user_codes});
 
 			// if ($('input[name=sms_codes]').val() == data.codes) {
@@ -57,6 +56,7 @@ $('#register_credentials').click(function(){
 		}
 	}
 });
+
 
 socket.on('registerAccount',function(data){
 	$('#reg_inner_form').submit();
@@ -111,7 +111,6 @@ socket.on('used_phone_number',function(data){
 
 
 socket.on('number_verified',function(data){
-	$('#register_credentials').show();
 	// $('#register_verification').hide();
 });
 
