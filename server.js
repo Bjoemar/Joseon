@@ -8,7 +8,7 @@ var ObjectID = require('mongodb').ObjectID;
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var socketIO = require('socket.io')
-
+var request = require('request');
 var io = socketIO(server);
 
 // var io = require('socket.io')(server, {'transports': ['websocket', 'polling']});
@@ -22,6 +22,8 @@ var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index.js');
 var user = require('./routes/user.js');
+
+var arrayHolder = new Array();
 
 // Setting the template of the app 
 
@@ -296,4 +298,53 @@ io.on('connection',function(socket){
 		    io.to(socketid).emit('delete_image_wid', {widget_id : widget_id});
 		})
 	})
+
+
+	socket.on('VerifyUser',function(data){
+		socketid = socket.id;
+		var user_number = data.number;
+		
+
+		for (var n = 0; n < arrayHolder.length; n++) {
+			if (arrayHolder[n].number == user_number) {
+				 io.to(socketid).emit('number_verified', {'codes' : arrayHolder[n].code});
+			} else {
+				var verification = Math.floor(1000 + Math.random() * 9000);
+				request.post('https://textbelt.com/text', {
+				  form: {
+				    phone: user_number,
+				    message: 'Your Verificatioc Code is '+verification,
+				    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+				  },
+				}, function(err, httpResponse, body) {
+				  if (err) {
+				    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+				    return;
+				  }
+
+				  	var user_num_object = {
+				  		'number' : user_number,
+				  		'code' : verification,
+				  	};
+
+				  	arrayHolder.push(user_num_object);
+				   io.to(socketid).emit('number_verified', {'codes' : verification});
+				})
+			}
+		}
+
+	})
+
+
+	socket.on('verifiedNumber',function(data){
+		var user_number = data.number;
+ 		for (var n = 0; n < arrayHolder.length; n++) {
+ 			if (arrayHolder[n].number == user_number) {
+					 arrayHolder.splice(n,1);
+			}
+ 		}
+	})
+
+
+
 });

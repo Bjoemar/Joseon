@@ -39,10 +39,28 @@ $('#register_credentials').click(function(){
 		$(this).attr('disabled' , 'true');
 		$(this).css('opacity' , '0.7');
 		$(this).html('잠시만 기다려 주세요.');
-		$('#reg_inner_form').submit();
+
+		if ($('input[name=sms_codes]').val().length == 0) {
+			$('input[name=sms_codes]').prev().html('Provide a verifaction code');
+		} else {
+			var user_codes = $('input[name=sms_codes]').val();
+			var reg_cellphone = $('input[name=reg_cellphone]').val();
+			socket.emit('VerifyUser',{'number' : reg_cellphone , 'codes' , user_codes});
+			
+		}
 	}
 
 });
+
+socket.on('number_verified',function(data){
+	if ($('input[name=sms_codes]').val() == data.codes) {
+		var number = $('input[name=reg_cellphone]').val();
+		socket.emit('verifiedNumber',{'number' : reg_cellphone});
+		$('#reg_inner_form').submit();
+	} else {
+		$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
+	}
+})
 
 
 $('.reg_inputs input').change(function(){

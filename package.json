@@ -25,6 +25,7 @@
     "nexmo": "^2.4.1",
     "node-datetime": "^2.1.2",
     "socket.io": "^2.2.0",
+    "textbelt": "0.0.4",
     "twilio": "^3.33.2",
     "uuid": "^3.3.2",
     "xmlhttprequest": "^1.8.0"
