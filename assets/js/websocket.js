@@ -23,7 +23,6 @@ var inputArrLen = inputArr.length;
 
 $('#register_credentials').click(function(){
 	
-
 	for(i =0; i < inputArrLen; i++) {
 		if (inputArr[i].val().length == 0) {
 			error_count = true;
@@ -49,8 +48,15 @@ $('#register_credentials').click(function(){
 			
 		}
 	}
-
 });
+
+socket.on('invalid_phone_number',function(data){
+	$('#register_credentials').attr('disabled' , 'false');
+	$('#register_credentials').css('opacity' , '1');
+	$('#register_credentials').html('확인.');
+	$('input[name=reg_cellphone]').prev().html('Invalid Phone number');
+})
+
 
 socket.on('number_verified',function(data){
 	if ($('input[name=sms_codes]').val() == data.codes) {

@@ -335,7 +335,6 @@ io.on('connection',function(socket){
 
 	})
 
-
 	socket.on('verifiedNumber',function(data){
 		var user_number = data.number;
  		for (var n = 0; n < arrayHolder.length; n++) {
