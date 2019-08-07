@@ -313,9 +313,7 @@ io.on('connection',function(socket){
 						procced_flag = false;
 					}
 				}
-
 				if (procced_flag == true) {
-
 					if (arrayHolder.length > 0) {
 						for (var n = 0; n < arrayHolder.length; n++) {
 							if (arrayHolder[n].number == user_number) {

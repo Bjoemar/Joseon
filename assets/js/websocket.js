@@ -69,21 +69,34 @@ socket.on('registerFailed',function(data){
 	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
 })
 
-$('#register_verification').click(function(){
-	$(this).attr('disabled' , 'true');
-	$(this).css('opacity' , '0.7');
-	$(this).html('Verifying Number .. ');
 
-	var user_codes = $('input[name=sms_codes]').val();
-	var reg_cellphone = $('input[name=reg_cellphone]').val();
-	socket.emit('VerifyUser',{'number' : reg_cellphone});
+$('#register_verification').click(function(){
+	for(i =0; i < inputArrLen; i++) {
+		if (inputArr[i].val().length == 0) {
+			error_count = true;
+			emptyValidate($(inputArr[i]));
+		} else { 
+			isnotEmpty($(inputArr[i]));
+			error_count = false;
+		} 
+	}
+
+	if(!error_id && !error_pass &&!error_name &&!error_num &&!error_count) {
+		$(this).attr('disabled' , 'true');
+		$(this).css('opacity' , '0.7');
+		$(this).html('SENDING');
+
+		var user_codes = $('input[name=sms_codes]').val();
+		var reg_cellphone = $('input[name=reg_cellphone]').val();
+		socket.emit('VerifyUser',{'number' : reg_cellphone});
+	}
 });
 
 
 socket.on('invalid_phone_number',function(data){
 	$('#register_verification').attr('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
-	$('#register_verification').html('Verify Number.');
+	$('#register_verification').html('SEND CODE');
 	$('input[name=reg_cellphone]').prev().html('Invalid Phone number');
 });
 
@@ -91,7 +104,7 @@ socket.on('invalid_phone_number',function(data){
 socket.on('used_phone_number',function(data){
 	$('#register_verification').attr('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
-	$('#register_verification').html('Verify Number.');
+	$('#register_verification').html('SEND CODE.');
 	$('input[name=reg_cellphone]').prev().html('Number is already used');
 });
 
@@ -99,8 +112,26 @@ socket.on('used_phone_number',function(data){
 
 socket.on('number_verified',function(data){
 	$('#register_credentials').show();
-	$('#register_verification').hide();
+	// $('#register_verification').hide();
 });
+
+
+
+// $(document).ready(function(){
+
+
+// 	$(document).on('change', '#cp_input' , function() {
+// 		alert(';hnlaibladsasd')
+// 		 // if ($(this).val().length > 3) {
+// 		 // 	alert(';hnlaibladsasd')
+// 			// $('#register_credentials').show();
+// 		 // }
+// 	});
+
+// });
+
+
+
 
 
 

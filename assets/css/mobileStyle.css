@@ -445,6 +445,21 @@ input{
 }
 
 
+
+
+#cp_input {
+	width: 70%;
+	float: left;
+}
+
+#register_verification {
+	float: left;
+	width: 30%;
+	margin-top: 0;
+	font-size: 12px;
+}
+
+
 @media only screen and (min-width: 768px) {
 	.navbar-brand {
 		position: static!important;
