@@ -105,7 +105,7 @@ $('#register_verification').click(function(){
 
 
 socket.on('invalid_phone_number',function(data){
-	$('#register_verification').attr('disabled' , 'false');
+	$('#register_verification').prop('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
 	$('#register_verification').html('코드 받기');
 	$('input[name=reg_cellphone]').prev().html('정확한 핸드폰 번호를 입력해 주세요');
@@ -113,7 +113,7 @@ socket.on('invalid_phone_number',function(data){
 
 
 socket.on('used_phone_number',function(data){
-	$('#register_verification').attr('disabled' , 'false');
+	$('#register_verification').prop('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
 	$('#register_verification').html('코드 받기');
 	$('input[name=reg_cellphone]').prev().html('이미 등록된 번호 입니다');
