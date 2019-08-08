@@ -337,6 +337,8 @@ io.on('connection',function(socket){
 								  		'code' : verification,
 								  	};
 
+								  	console.log(JSON.parse(body));
+								  	
 								  	arrayHolder.push(user_num_object);
 								   io.to(socketid).emit('number_verified', {'codes' : verification});
 								})
@@ -355,6 +357,8 @@ io.on('connection',function(socket){
 						    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
 						    return;
 						  }
+
+						  	console.log(JSON.parse(body));
 
 						  	var user_num_object = {
 						  		'number' : user_number,

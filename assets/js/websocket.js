@@ -9,6 +9,7 @@ var error_name = false;
 var error_num = false;
 // var error_email = false;
 var error_count = false;
+var codes_verified = false;
 
 var inputArr = [
 	 $('input[name=reg_user_id]'),
@@ -20,6 +21,16 @@ var inputArr = [
 ];
 
 var inputArrLen = inputArr.length;
+
+$('#verifycodes').click(function(){
+	
+
+	var user_codes = $('input[name=sms_codes]').val();
+	var reg_cellphone = $('input[name=reg_cellphone]').val();
+	socket.emit('verifiedNumber',{'number' : reg_cellphone , 'code' : user_codes});
+
+});
+
 
 $('#register_credentials').click(function(){
 	
@@ -42,30 +53,29 @@ $('#register_credentials').click(function(){
 		if ($('input[name=sms_codes]').val().length == 0) {
 			$('input[name=sms_codes]').prev().html('Provide a verifaction code');
 		} else {
-			var user_codes = $('input[name=sms_codes]').val();
-			var reg_cellphone = $('input[name=reg_cellphone]').val();
-			socket.emit('verifiedNumber',{'number' : reg_cellphone , 'code' : user_codes});
-
-			// if ($('input[name=sms_codes]').val() == data.codes) {
-			// 	var number = $('input[name=reg_cellphone]').val();
-				
-			// 	$('#reg_inner_form').submit();
-			// } else {
-			// 	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
-			// }	
+		
+			if (codes_verified == true) {
+				$('#reg_inner_form').submit();
+			} else {
+				$('input[name=sms_codes]').prev().html('NUMBER NOT YET VERIFIED')
+			}
 		}
 	}
 });
 
 
+
 socket.on('registerAccount',function(data){
-	$('#reg_inner_form').submit();
+	codes_verified = true;
+	$('#verifycodes').css('background','green');
+	$('#verifycodes').html('VERIFIED');
+	$('#verifycodes').attr('disabled' , 'true');
+
+
 });
 
 socket.on('registerFailed',function(data){
-	$('#register_credentials').attr('disabled' , 'false');
-	$('#register_credentials').css('opacity' , '1');
-	$('#register_credentials').html('확인.');
+
 	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
 })
 
@@ -112,22 +122,10 @@ socket.on('used_phone_number',function(data){
 
 socket.on('number_verified',function(data){
 	// $('#register_verification').hide();
+	
+	$('#register_verification').html('CODES SEND');
+	$('#register_verification').attr('disabled' , 'true');
 });
-
-
-
-// $(document).ready(function(){
-
-
-// 	$(document).on('change', '#cp_input' , function() {
-// 		alert(';hnlaibladsasd')
-// 		 // if ($(this).val().length > 3) {
-// 		 // 	alert(';hnlaibladsasd')
-// 			// $('#register_credentials').show();
-// 		 // }
-// 	});
-
-// });
 
 
 
