@@ -52,7 +52,7 @@ $('#register_credentials').click(function(){
 			$('input[name=sms_codes]').prev().html('코드를 입력해 주세요');
 		} else {
 			if (codes_verified == true) {
-				$(this).attr('disabled' , 'true');
+				$(this).attr('disabled' , true);
 				$(this).css('opacity' , '0.7');
 				$(this).html('잠시만 기다려 주세요.');
 				$('#reg_inner_form').submit();
@@ -70,7 +70,7 @@ socket.on('registerAccount',function(data){
 	$('#reg_inner_form input').prop('readonly', true);
 	codes_verified = true;
 	$('#verifycodes').css('background','green');
-	$('#verifycodes').html('성공');	$('#verifycodes').attr('disabled' , 'true');
+	$('#verifycodes').html('성공');	$('#verifycodes').attr('disabled' , true);
 
 
 });
@@ -105,7 +105,7 @@ $('#register_verification').click(function(){
 
 
 socket.on('invalid_phone_number',function(data){
-	$('#register_verification').prop('disabled' , 'false');
+	$('#register_verification').prop('disabled' , false);
 	$('#register_verification').css('opacity' , '1');
 	$('#register_verification').html('코드 받기');
 	$('input[name=reg_cellphone]').prev().html('정확한 핸드폰 번호를 입력해 주세요');
@@ -113,7 +113,7 @@ socket.on('invalid_phone_number',function(data){
 
 
 socket.on('used_phone_number',function(data){
-	$('#register_verification').prop('disabled' , 'false');
+	$('#register_verification').prop('disabled' , false);
 	$('#register_verification').css('opacity' , '1');
 	$('#register_verification').html('코드 받기');
 	$('input[name=reg_cellphone]').prev().html('이미 등록된 번호 입니다');
@@ -125,7 +125,7 @@ socket.on('number_verified',function(data){
 	// $('#register_verification').hide();
 	$('#register_verification').css('background','green');
 	$('#register_verification').html('성공');
-	$('#register_verification').attr('disabled' , 'true');
+	$('#register_verification').attr('disabled' , true);
 });
 
 
@@ -215,7 +215,7 @@ $('#login_credentials').click(function(){
 	}
 
 	if(!error_user && !error_pass) {
-		$(this).attr('disabled' , 'true');
+		$(this).attr('disabled' , true);
 		$(this).css('opacity' , '0.7');
 		$(this).html('로그인 하는중');
 		socket.emit('check_credentials',{'user_id' : user_id , 'password' : password});
