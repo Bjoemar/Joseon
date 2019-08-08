@@ -123,7 +123,7 @@ socket.on('used_phone_number',function(data){
 
 socket.on('number_verified',function(data){
 	// $('#register_verification').hide();
-	
+	$('#register_verification').css('background','green');
 	$('#register_verification').html('성공');
 	$('#register_verification').attr('disabled' , 'true');
 });
