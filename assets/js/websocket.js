@@ -65,7 +65,8 @@ $('#register_credentials').click(function(){
 
 
 
-socket.on('registerAccount',function(data){
+socket.on('registerAccount',function(data){\
+	$('#reg_inner_form input').attr('disabled',true);
 	codes_verified = true;
 	$('#verifycodes').css('background','green');
 	$('#verifycodes').html('성공');
@@ -94,7 +95,7 @@ $('#register_verification').click(function(){
 	if(!error_id && !error_pass &&!error_name &&!error_num &&!error_count) {
 		$(this).attr('disabled' , 'true');
 		$(this).css('opacity' , '0.7');
-		$(this).html('SENDING');
+		$(this).html('성공');
 
 		var user_codes = $('input[name=sms_codes]').val();
 		var reg_cellphone = $('input[name=reg_cellphone]').val();
@@ -141,20 +142,6 @@ $('.reg_inputs input').change(function(){
  	error_id = true;
  	socket.emit('check_user_id',{'user_id' : user_id});
  })
-
- // $('input[name=reg_email]').change(function(){
- // 	error_email = true;
- // 	var reg_email = $(this).val();
- // 	if(validate(reg_email)) {
- // 		isnotEmpty($(this));
- // 		socket.emit('check_reg_email',{'reg_email' : reg_email});
- // 	} else {
- // 		$(this).prev().html('* Email 을 올바르게 작성해 주세요.').css('color' , 'red');
- // 		$(this).css('border' , '1px solid red');
- // 	}
- 	
- 	
- // })
 
 
 $('input[name=reg_password2]').change(function(){
