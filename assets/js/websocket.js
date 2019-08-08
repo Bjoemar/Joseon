@@ -46,17 +46,18 @@ $('#register_credentials').click(function(){
 	}
 
 	if(!error_id && !error_pass &&!error_name &&!error_num &&!error_count) {
-		$(this).attr('disabled' , 'true');
-		$(this).css('opacity' , '0.7');
-		$(this).html('잠시만 기다려 주세요.');
+		
 
 		if ($('input[name=sms_codes]').val().length == 0) {
 			$('input[name=sms_codes]').prev().html('코드를 입력해 주세요');
 		} else {
-		
 			if (codes_verified == true) {
+				$(this).attr('disabled' , 'true');
+				$(this).css('opacity' , '0.7');
+				$(this).html('잠시만 기다려 주세요.');
 				$('#reg_inner_form').submit();
 			} else {
+
 				$('input[name=sms_codes]').prev().html('코드를 입력해 주세요')
 			}
 		}
