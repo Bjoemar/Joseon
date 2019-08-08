@@ -169,7 +169,7 @@ $('input[name=reg_password2]').change(function(){
 })
 
 function emptyValidate(input){
-	$(input).prev().html('* This Field is required').css('color' , 'red');
+	$(input).prev().html('* 정보를 입력해 주세요').css('color' , 'red');
 	$(input).css('border' , '1px solid red');
 	return errorFlag = true;
 }
