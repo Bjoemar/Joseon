@@ -59,9 +59,9 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 
 
-// server.listen(5000, function() {
-//   console.log('Starting server on port 5000');
-// });
+server.listen(5000, function() {
+  console.log('Starting server on port 5000');
+});
 
 
 // server.listen(3000, function() {
@@ -313,7 +313,7 @@ io.on('connection',function(socket){
 						procced_flag = false;
 					}
 				}
-				
+
 				if (procced_flag == true) {
 					if (arrayHolder.length > 0) {
 						for (var n = 0; n < arrayHolder.length; n++) {
@@ -333,15 +333,18 @@ io.on('connection',function(socket){
 								    return;
 								  }
 
-								  	var user_num_object = {
-								  		'number' : user_number,
-								  		'code' : verification,
-								  	};
+								  if (body.success == true) {
+								  		var user_num_object = {
+								  			'number' : user_number,
+								  			'code' : verification,
+								  		};
 
-								  	console.log(JSON.parse(body));
+							  		arrayHolder.push(user_num_object);
+							  	 io.to(socketid).emit('number_verified', {'codes' : verification});
+							  	} else {
+							  		io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+							  	}
 
-								  	arrayHolder.push(user_num_object);
-								   io.to(socketid).emit('number_verified', {'codes' : verification});
 								})
 							}
 						}
@@ -354,20 +357,25 @@ io.on('connection',function(socket){
 						    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
 						  },
 						}, function(err, httpResponse, body) {
+
 						  if (err) {
+
 						    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
 						    return;
 						  }
 
-						  	console.log(JSON.parse(body));
+						  	
+						  if (body.success == true) {
+						  		var user_num_object = {
+						  			'number' : user_number,
+						  			'code' : verification,
+						  		};
 
-						  	var user_num_object = {
-						  		'number' : user_number,
-						  		'code' : verification,
-						  	};
-
-						  	arrayHolder.push(user_num_object);
-						   io.to(socketid).emit('number_verified', {'codes' : verification});
+					  		arrayHolder.push(user_num_object);
+					  	 io.to(socketid).emit('number_verified', {'codes' : verification});
+					  	} else {
+					  		io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
+					  	}
 						})
 					}
 				} else {
