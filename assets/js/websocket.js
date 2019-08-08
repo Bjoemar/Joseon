@@ -51,13 +51,13 @@ $('#register_credentials').click(function(){
 		$(this).html('잠시만 기다려 주세요.');
 
 		if ($('input[name=sms_codes]').val().length == 0) {
-			$('input[name=sms_codes]').prev().html('Provide a verifaction code');
+			$('input[name=sms_codes]').prev().html('코드를 입력해 주세요');
 		} else {
 		
 			if (codes_verified == true) {
 				$('#reg_inner_form').submit();
 			} else {
-				$('input[name=sms_codes]').prev().html('NUMBER NOT YET VERIFIED')
+				$('input[name=sms_codes]').prev().html('코드를 입력해 주세요')
 			}
 		}
 	}
@@ -68,7 +68,7 @@ $('#register_credentials').click(function(){
 socket.on('registerAccount',function(data){
 	codes_verified = true;
 	$('#verifycodes').css('background','green');
-	$('#verifycodes').html('VERIFIED');
+	$('#verifycodes').html('성공');
 	$('#verifycodes').attr('disabled' , 'true');
 
 
@@ -76,7 +76,7 @@ socket.on('registerAccount',function(data){
 
 socket.on('registerFailed',function(data){
 
-	$('input[name=sms_codes]').prev().html('Wrong Verification Codes');
+	$('input[name=sms_codes]').prev().html('정확한 코드를 입력해 주세요');
 })
 
 
@@ -106,16 +106,16 @@ $('#register_verification').click(function(){
 socket.on('invalid_phone_number',function(data){
 	$('#register_verification').attr('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
-	$('#register_verification').html('SEND CODE');
-	$('input[name=reg_cellphone]').prev().html('Invalid Phone number');
+	$('#register_verification').html('코드 받기');
+	$('input[name=reg_cellphone]').prev().html('정확한 핸드폰 번호를 입력해 주세요');
 });
 
 
 socket.on('used_phone_number',function(data){
 	$('#register_verification').attr('disabled' , 'false');
 	$('#register_verification').css('opacity' , '1');
-	$('#register_verification').html('SEND CODE.');
-	$('input[name=reg_cellphone]').prev().html('Number is already used');
+	$('#register_verification').html('코드 받기');
+	$('input[name=reg_cellphone]').prev().html('이미 등록된 번호 입니다');
 });
 
 
@@ -123,7 +123,7 @@ socket.on('used_phone_number',function(data){
 socket.on('number_verified',function(data){
 	// $('#register_verification').hide();
 	
-	$('#register_verification').html('CODES SEND');
+	$('#register_verification').html('성공');
 	$('#register_verification').attr('disabled' , 'true');
 });
 
