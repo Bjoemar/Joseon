@@ -323,7 +323,7 @@ io.on('connection',function(socket){
 								request.post('https://textbelt.com/text', {
 								  form: {
 								    phone: user_number,
-								    message: 'Your Verificatioc Code is '+verification,
+								    message: '조선홀덤 회원가입 코드 : '+verification,
 								    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
 								  },
 								}, function(err, httpResponse, body) {
@@ -338,7 +338,7 @@ io.on('connection',function(socket){
 								  	};
 
 								  	console.log(JSON.parse(body));
-								  	
+
 								  	arrayHolder.push(user_num_object);
 								   io.to(socketid).emit('number_verified', {'codes' : verification});
 								})
@@ -349,7 +349,7 @@ io.on('connection',function(socket){
 						request.post('https://textbelt.com/text', {
 						  form: {
 						    phone: user_number,
-						    message: 'Your Verification Code is '+verification,
+						    message: '조선홀덤 회원가입 코드 : '+verification,
 						    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
 						  },
 						}, function(err, httpResponse, body) {
