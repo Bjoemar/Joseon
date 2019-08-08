@@ -67,7 +67,7 @@ $('#register_credentials').click(function(){
 
 
 socket.on('registerAccount',function(data){
-	$('#reg_inner_form input').attr('disabled',true);
+	$('#reg_inner_form input').prop('readonly', true);
 	codes_verified = true;
 	$('#verifycodes').css('background','green');
 	$('#verifycodes').html('성공');	$('#verifycodes').attr('disabled' , 'true');

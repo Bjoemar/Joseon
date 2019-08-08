@@ -26,7 +26,7 @@ router.post('/register',urlencodedParser, function(req,res){
 				"password" : reg_password,
 				"name" : reg_name,
 				"cellphone" : reg_cellphone,
-				"email" : reg_email,
+				// "email" : reg_email,
 				"userLevel" : 'normal',
 			};
 
