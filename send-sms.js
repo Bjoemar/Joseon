@@ -44,7 +44,12 @@ request.post('https://textbelt.com/text', {
     console.error('Error:', err);
     return;
   }
-  console.log(JSON.parse(body));
+ var res = httpResponse.body;
+
+ if (res.includes("true")) {
+ 	console.log("baflbdljgfbljgbflj")
+ }
 })
+
 
 // curl "https://platform.clickatell.com/messages/http/send?apiKey=2h37WVHfTq-U-z5sUc0g2A==&to=639164356928&content=JOEMAR"

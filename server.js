@@ -333,7 +333,9 @@ io.on('connection',function(socket){
 								    return;
 								  }
 
-								  if (body.success == true) {
+								 var res = httpResponse.body;
+						  
+						  			if (res.includes("true")) {
 								  		var user_num_object = {
 								  			'number' : user_number,
 								  			'code' : verification,
@@ -359,13 +361,13 @@ io.on('connection',function(socket){
 						}, function(err, httpResponse, body) {
 
 						  if (err) {
-
 						    io.to(socketid).emit('invalid_phone_number', {'erorr_msg' : 'The Phone is invalid'});
 						    return;
 						  }
 
-						  	
-						  if (body.success == true) {
+						  var res = httpResponse.body;
+
+						  if (res.includes("true")) {
 						  		var user_num_object = {
 						  			'number' : user_number,
 						  			'code' : verification,
