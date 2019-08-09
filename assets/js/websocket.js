@@ -95,7 +95,7 @@ $('#register_verification').click(function(){
 	if(!error_id && !error_pass &&!error_name &&!error_num &&!error_count) {
 		$(this).attr('disabled' , 'true');
 		$(this).css('opacity' , '0.7');
-		$(this).html('발송 안됨');
+		$(this).html('실행중');
 
 		var user_codes = $('input[name=sms_codes]').val();
 		var reg_cellphone = $('input[name=reg_cellphone]').val();
