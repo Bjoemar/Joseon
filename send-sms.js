@@ -31,25 +31,21 @@
 //   },
 // })
 
-var request = require('request');
+// var request = require('request');
 
-request.post('https://textbelt.com/text', {
-  form: {
-    phone: '+35403562846',
-    message: 'Putangina mo  Maboy',
-    key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
-  },
-}, function(err, httpResponse, body) {
-  if (err) {
-    console.error('Error:', err);
-    return;
-  }
- var res = httpResponse.body;
-
- if (res.includes("true")) {
- 	console.log("baflbdljgfbljgbflj")
- }
-})
+// request.post('https://textbelt.com/text', {
+//   form: {
+//     phone: '+639164356928',
+//     message: 'Putangina mo  Maboy',
+//     key: '0c0bf76dadc042be279d4b259cde941f2fc5c34eq3of2sJ5cqpiv1D337mRaux9q',
+//   },
+// }, function(err, httpResponse, body) {
+//   if (err) {
+//     console.error('Error:', err);
+//     return;
+//   }
+//   console.log(JSON.parse(body));
+// })
 
 
 // curl "https://platform.clickatell.com/messages/http/send?apiKey=2h37WVHfTq-U-z5sUc0g2A==&to=639164356928&content=JOEMAR"
