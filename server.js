@@ -14,7 +14,8 @@ var io = socketIO(server);
 // var io = require('socket.io')(server, {'transports': ['websocket', 'polling']});
 
 var uuidv4 = require('uuid/v4');
-var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
+var url = "mongodb+srv://joemar12:joemar12@cluster0-hbe6s.mongodb.net/admin?retryWrites=true&w=majority"
+// var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
