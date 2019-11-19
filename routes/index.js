@@ -7,7 +7,7 @@ var fs = require('fs');
 var dateTime = require('node-datetime');
 var MongoClient = require('mongodb').MongoClient;
 var formidable = require('formidable');
-var url = "mongodb+srv://joemar12:joemar12@cluster0-hbe6s.mongodb.net/admin?retryWrites=true&w=majority";
+var url = "mongodb+srv://joemar12:joemar12@zigbang-hbe6s.mongodb.net/test?retryWrites=true&w=majority"
 var bodyParser = require('body-parser');
 var useragent = require('express-useragent');
 var urlencodedParser = bodyParser.urlencoded({extended : false});
