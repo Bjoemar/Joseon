@@ -67,7 +67,7 @@ router.post('/login',urlencodedParser, function(req,res){
 				} else {
 					res.redirect('/admin'); 
 				}
-				
+				  
 			} else {
 				res.redirect('/'); 
 			}

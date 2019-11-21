@@ -5,6 +5,7 @@
 				<a href="/"><img src="assets/images/web-logo.png"></a>
 			</div>
 		</li>
+
 		<% if (typeof userLevel == 'undefined'){ %>
 			<button class="login_btn_open web-nav-link" style="background: transparent; border: none; margin-right : 20px; ">홀덤바 위치</button> 
 			<button class="login_btn_open web-nav-link" style="background: transparent; border: none; margin-right : 20px; ">이벤트</button> 
@@ -36,6 +37,7 @@
 					<button style="border-right: 1px solid gray;" class="login_btn_open">로그인</button> 
 					<button class="reg_btn_open">회원가입</button> 
 				<% } else { %>
+
 					<% if (userLevel == 'normal') { -%>
 						<a href="/user/logout"><button>로그아웃</button></a>
 					<% } else { -%>
