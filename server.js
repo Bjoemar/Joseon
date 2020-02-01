@@ -14,7 +14,8 @@ var io = socketIO(server);
 // var io = require('socket.io')(server, {'transports': ['websocket', 'polling']});
 
 var uuidv4 = require('uuid/v4');
-var url = "mongodb+srv://joemar12:joemar12@zigbang-hbe6s.mongodb.net/test?retryWrites=true&w=majority"
+// var url = "mongodb://localhost:27017/baccarats";
+var url = "mongodb+srv://joemar12:joemar12@zigbang-oh6ud.mongodb.net/test?retryWrites=true&w=majority"
 // var url = "mongodb+srv://joemar12:joemar12@cluster0-hbe6s.mongodb.net/admin?retryWrites=true&w=majority";
 // var url = "mongodb://joemar12:joemar12@ds339927-a0.mlab.com:39927,ds339927-a1.mlab.com:39927/zigbang?replicaSet=rs-ds339927";
 var session = require('express-session');
@@ -34,7 +35,7 @@ app.use(session({
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
   },
- 	store: new MongoStore({url : "mongodb+srv://joemar12:joemar12@zigbang-hbe6s.mongodb.net/test?retryWrites=true&w=majority"}),
+ 	store: new MongoStore({url : "mongodb+srv://joemar12:joemar12@zigbang-oh6ud.mongodb.net/test?retryWrites=true&w=majority"}),
  	collection: 'mySessions',
   resave: true,
   saveUninitialized: true,

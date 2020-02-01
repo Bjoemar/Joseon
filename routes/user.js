@@ -9,7 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({extended : false});
 // 
 
 var {check , validationResult } = require('express-validator');
-var url = "mongodb+srv://joemar12:joemar12@zigbang-hbe6s.mongodb.net/test?retryWrites=true&w=majority"
+var url = "mongodb+srv://joemar12:joemar12@zigbang-oh6ud.mongodb.net/test?retryWrites=true&w=majority";
 
 router.use(check());
 
